@@ -1,5 +1,8 @@
 const t = require('tcomb');
-const { isUUID, isISO8601 } = require('validator');
+const {
+  isUUID,
+  isISO8601
+} = require('validator');
 
 const PercentClass = t.enums.of([ 'success', 'warning', 'danger' ], 'PercentClass');
 const TestState = t.enums.of([ 'passed', 'failed' ], 'TestState');
@@ -25,7 +28,8 @@ const Test = t.struct({
   parentUUID: t.maybe(Uuid),
   skipped: t.Boolean,
   context: t.maybe(t.String),
-  isHook: t.Boolean
+  isHook: t.Boolean,
+  labels: t.maybe(t.list(t.String))
 });
 
 const Suite = t.declare('Suite');
@@ -73,4 +77,6 @@ const TestReport = t.struct({
   copyrightYear: t.Integer
 });
 
-module.exports = { TestReport };
+module.exports = {
+  TestReport
+};
