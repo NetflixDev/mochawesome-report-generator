@@ -6,7 +6,7 @@ import iconmap from './icon-map.json';
 
 class Icon extends PureComponent {
   render() {
-    const { className, name, size, foreground } = this.props;
+    const { className, name, size, foreground, clickEvt } = this.props;
     const iconCode = iconmap[name];
     const cxName = classNames(
       'material-icons',
@@ -14,7 +14,13 @@ class Icon extends PureComponent {
       !!foreground && `md-${foreground}`,
       className
     );
-    return !!iconCode && <i className={ cxName } dangerouslySetInnerHTML={ { __html: `&#x${iconCode};` } } />;
+    if (!iconCode) {
+      return null;
+    } else if (this.props.clickEvt) {
+      return <i className={ cxName } dangerouslySetInnerHTML={ { __html: `&#x${iconCode};` } } onClick={ clickEvt } />
+    }
+
+    return <i className={ cxName } dangerouslySetInnerHTML={ { __html: `&#x${iconCode};` } } />;
   }
 }
 
@@ -22,7 +28,8 @@ Icon.propTypes = {
   className: PropTypes.string,
   name: PropTypes.string,
   size: PropTypes.oneOf([ 18, 24, 36, 48 ]),
-  foreground: PropTypes.oneOf([ 'light', 'dark' ])
+  foreground: PropTypes.oneOf([ 'light', 'dark' ]),
+  clickEvt: PropTypes.func
 };
 
 Icon.displayName = 'MaterialIcon';

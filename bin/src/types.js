@@ -29,7 +29,8 @@ const Test = t.struct({
   skipped: t.Boolean,
   context: t.maybe(t.String),
   isHook: t.Boolean,
-  labels: t.maybe(t.list(t.String))
+  labels: t.maybe(t.list(t.String)),
+  reviewed: t.maybe(t.Boolean)
 });
 
 const Suite = t.declare('Suite');

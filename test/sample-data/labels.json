@@ -154,7 +154,8 @@
                 "uuid": "ff5eea6e-5ffd-4409-be73-c35b83608b40",
                 "isHook": false,
                 "skipped": false,
-                "labels": ["nice-to-have"]
+                "labels": ["nice-to-have"],
+                "reviewed": false
               },
               {
                 "title": "has a width field with a number value",
@@ -681,7 +682,8 @@
                 "uuid": "16e65e40-b182-4c80-92b0-277b38281db3",
                 "isHook": false,
                 "skipped": false,
-                "labels": ["nice-to-have"]
+                "labels": ["nice-to-have"],
+                "reviewed": false
               },
               {
                 "title": "has monet data",
@@ -748,7 +750,8 @@
                 "uuid": "4fa9148d-dae7-4ceb-a130-42640897d6a9",
                 "isHook": false,
                 "skipped": false,
-                "labels": ["nice-to-have"]
+                "labels": ["nice-to-have"],
+                "reviewed": false
               }
             ],
             "suites": [],
@@ -867,8 +870,8 @@
                 "duration": 21802,
                 "state": "passed",
                 "speed": "slow",
-                "pass": true,
-                "fail": false,
+                "pass": false,
+                "fail": true,
                 "pending": false,
                 "context": "\"./images/placeholder.jpg\"",
                 "code":
@@ -878,7 +881,8 @@
                 "uuid": "efbd9194-53cf-4975-b76b-bb2f21922731",
                 "isHook": false,
                 "skipped": false,
-                "labels": ["nice-to-have", "screenshot-review"]
+                "labels": ["nice-to-have", "screenshot-review"],
+                "reviewed": false
               },
               {
                 "title":
@@ -889,8 +893,8 @@
                 "duration": 27785,
                 "state": "passed",
                 "speed": "slow",
-                "pass": true,
-                "fail": false,
+                "pass": false,
+                "fail": true,
                 "pending": false,
                 "context": "\"./images/placeholder.jpg\"",
                 "code":
@@ -900,7 +904,8 @@
                 "uuid": "852615de-cad7-4ad0-8c49-ee0e94d7dd0a",
                 "isHook": false,
                 "skipped": false,
-                "labels": ["nice-to-have", "screenshot-review"]
+                "labels": ["nice-to-have", "screenshot-review"],
+                "reviewed": true
               }
             ],
             "suites": [],
