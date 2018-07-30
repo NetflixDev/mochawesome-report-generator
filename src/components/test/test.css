@@ -72,6 +72,17 @@
     background-color: var(--red500);
   }
 
+  &.warning {
+    color: #fff;
+    background-color: var(--yellow800);
+  }
+
+  &.screenshot-review {
+    color: var(--grey500);
+    background: var(--grey50);
+    border: 2px var(--amber500) dashed;
+  }
+
   &.pending {
     color: var(--ltblue100);
     background-color: var(--ltblue500);

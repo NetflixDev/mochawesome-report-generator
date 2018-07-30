@@ -26,69 +26,80 @@
     "beforeHooks": [],
     "afterHooks": [],
     "tests": [],
-    "suites": [{
+    "suites": [
+      {
         "uuid": "cf5b4528-14a5-4c81-b326-3f17655b3541",
         "title": "generic container - files",
-        "fullFile": "/Users/nico.hsieh/Documents/Development/netflix-web-components/da-testing-framework/tests/active/containers/generic-source/01.file.test.js",
+        "fullFile":
+          "/Users/nico.hsieh/Documents/Development/netflix-web-components/da-testing-framework/tests/active/containers/generic-source/01.file.test.js",
         "file": "/tests/active/containers/generic-source/01.file.test.js",
-        "beforeHooks": [{
-          "title": "\"before all\" hook",
-          "fullTitle": "generic container - files \"before all\" hook",
-          "timedOut": false,
-          "duration": 15,
-          "pass": false,
-          "fail": false,
-          "pending": false,
-          "code": "(client, done) => {\n    variables.initValues(client.globals);\n    const backupPath = `${client.globals.target.context}backup.json`;\n    const manifestPath = `${client.globals.target.context}manifest.json`;\n    const loadJSON = (url, kind) => {\n      return new Promise((resolve, reject) => {\n        request(url, (err, res, body) => {\n          if (err) {\n            reject(err);\n          }\n          const bodyObj = JSON.parse(body);\n          let obj = {\n            err,\n            res,\n            body,\n            bodyObj\n          };\n          if (kind === 'manifest') {\n            obj.componentIds = bodyObj.rootComponents.map(item => {\n              return item.id;\n            });\n            manifestRes = obj;\n          } else {\n            obj.assetKeys = Object.keys(bodyObj.rootAssets);\n            backupRes = obj;\n          }\n          resolve();\n        });\n      });\n    };\n    const loadManifest = loadJSON(manifestPath, 'manifest');\n    const loadBackup = loadJSON(backupPath, 'backup');\n    Promise.all([loadManifest, loadBackup])\n      .then(() => {\n        done();\n      })\n      .catch(err => {\n        throw err;\n      });",
-          "err": {},
-          "isRoot": false,
-          "uuid": "804a46dd-6727-48eb-a853-87d9220232c9",
-          "isHook": true,
-          "skipped": false
-        }],
-        "afterHooks": [{
-          "title": "\"after all\" hook",
-          "fullTitle": "generic container - files \"after all\" hook",
-          "timedOut": false,
-          "duration": 61,
-          "pass": false,
-          "fail": false,
-          "pending": false,
-          "code": "(client, done) => {\n    client.end(function() {\n      done();\n    });",
-          "err": {},
-          "isRoot": false,
-          "uuid": "959040c2-e89e-4bfb-8a98-290df0dfaeb7",
-          "isHook": true,
-          "skipped": false
-        }],
-        "tests": [{
-          "title": "has matching backup.json and manifest.json",
-          "fullTitle": "generic container - files has matching backup.json and manifest.json",
-          "timedOut": false,
-          "duration": 2,
-          "state": "passed",
-          "speed": "fast",
-          "pass": true,
-          "fail": false,
-          "pending": false,
-          "code": "client => {\n    /*___required___*/\n    // collect all objects from manifest.json\n    const formattedManifestKeys = manifestRes.bodyObj.rootComponents.map(item => {\n      const assetType = item.type === 'monetVideo' ? 'video' : item.type;\n      return `${assetType}.${item.id}`;\n    });\n    const sortedManifestKeys = formattedManifestKeys.sort();\n    const sortedBackupKeys = backupRes.assetKeys.sort();\n    // compare two arrays\n    const arraysIdentical = sortedManifestKeys.join(',') === sortedBackupKeys.join(',');\n    client.assert.equal(arraysIdentical, true);",
-          "err": {},
-          "isRoot": false,
-          "uuid": "de36bd3f-787a-42ff-9c20-16700cadb6d2",
-          "isHook": false,
-          "skipped": false,
-          "labels": [
-            "required"
-          ]
-        }],
-        "suites": [{
+        "beforeHooks": [
+          {
+            "title": "\"before all\" hook",
+            "fullTitle": "generic container - files \"before all\" hook",
+            "timedOut": false,
+            "duration": 15,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code":
+              "(client, done) => {\n    variables.initValues(client.globals);\n    const backupPath = `${client.globals.target.context}backup.json`;\n    const manifestPath = `${client.globals.target.context}manifest.json`;\n    const loadJSON = (url, kind) => {\n      return new Promise((resolve, reject) => {\n        request(url, (err, res, body) => {\n          if (err) {\n            reject(err);\n          }\n          const bodyObj = JSON.parse(body);\n          let obj = {\n            err,\n            res,\n            body,\n            bodyObj\n          };\n          if (kind === 'manifest') {\n            obj.componentIds = bodyObj.rootComponents.map(item => {\n              return item.id;\n            });\n            manifestRes = obj;\n          } else {\n            obj.assetKeys = Object.keys(bodyObj.rootAssets);\n            backupRes = obj;\n          }\n          resolve();\n        });\n      });\n    };\n    const loadManifest = loadJSON(manifestPath, 'manifest');\n    const loadBackup = loadJSON(backupPath, 'backup');\n    Promise.all([loadManifest, loadBackup])\n      .then(() => {\n        done();\n      })\n      .catch(err => {\n        throw err;\n      });",
+            "err": {},
+            "isRoot": false,
+            "uuid": "804a46dd-6727-48eb-a853-87d9220232c9",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "afterHooks": [
+          {
+            "title": "\"after all\" hook",
+            "fullTitle": "generic container - files \"after all\" hook",
+            "timedOut": false,
+            "duration": 61,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "(client, done) => {\n    client.end(function() {\n      done();\n    });",
+            "err": {},
+            "isRoot": false,
+            "uuid": "959040c2-e89e-4bfb-8a98-290df0dfaeb7",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "tests": [
+          {
+            "title": "has matching backup.json and manifest.json",
+            "fullTitle": "generic container - files has matching backup.json and manifest.json",
+            "timedOut": false,
+            "duration": 2,
+            "state": "failed",
+            "speed": "fast",
+            "pass": false,
+            "fail": true,
+            "pending": false,
+            "code":
+              "client => {\n    /*___required___*/\n    // collect all objects from manifest.json\n    const formattedManifestKeys = manifestRes.bodyObj.rootComponents.map(item => {\n      const assetType = item.type === 'monetVideo' ? 'video' : item.type;\n      return `${assetType}.${item.id}`;\n    });\n    const sortedManifestKeys = formattedManifestKeys.sort();\n    const sortedBackupKeys = backupRes.assetKeys.sort();\n    // compare two arrays\n    const arraysIdentical = sortedManifestKeys.join(',') === sortedBackupKeys.join(',');\n    client.assert.equal(arraysIdentical, true);",
+            "err": {},
+            "isRoot": false,
+            "uuid": "de36bd3f-787a-42ff-9c20-16700cadb6d2",
+            "isHook": false,
+            "skipped": false,
+            "labels": ["required"]
+          }
+        ],
+        "suites": [
+          {
             "uuid": "a8722c5a-5b7a-4b98-8138-58fda5adf981",
             "title": "manifest.json",
-            "fullFile": "/Users/nico.hsieh/Documents/Development/netflix-web-components/da-testing-framework/tests/active/containers/generic-source/01.file.test.js",
+            "fullFile":
+              "/Users/nico.hsieh/Documents/Development/netflix-web-components/da-testing-framework/tests/active/containers/generic-source/01.file.test.js",
             "file": "/tests/active/containers/generic-source/01.file.test.js",
             "beforeHooks": [],
             "afterHooks": [],
-            "tests": [{
+            "tests": [
+              {
                 "title": "is present",
                 "fullTitle": "generic container - files manifest.json is present",
                 "timedOut": false,
@@ -98,15 +109,14 @@
                 "pass": true,
                 "fail": false,
                 "pending": false,
-                "code": "client => {\n      /*___required___*/\n      client.assert.equal(manifestRes.res.statusCode, 200);",
+                "code":
+                  "client => {\n      /*___required___*/\n      client.assert.equal(manifestRes.res.statusCode, 200);",
                 "err": {},
                 "isRoot": false,
                 "uuid": "3038d0b5-92cb-42bb-a661-0c99e39fe4f1",
                 "isHook": false,
                 "skipped": false,
-                "labels": [
-                  "required"
-                ]
+                "labels": ["required"]
               },
               {
                 "title": "doesn't have duplicate ids",
@@ -118,15 +128,14 @@
                 "pass": true,
                 "fail": false,
                 "pending": false,
-                "code": "client => {\n      /*___required___*/\n      const ids = manifestRes.bodyObj.rootComponents.map(item => {\n        return item.id;\n      });\n      const sortedIds = ids.sort();\n      let duplication = false;\n      for (let i = 0; i < sortedIds.length - 1; i++) {\n        if (sortedIds[i] === sortedIds[i + 1]) {\n          duplication = true;\n        }\n      }\n      client.assert.equal(duplication, false);",
+                "code":
+                  "client => {\n      /*___required___*/\n      const ids = manifestRes.bodyObj.rootComponents.map(item => {\n        return item.id;\n      });\n      const sortedIds = ids.sort();\n      let duplication = false;\n      for (let i = 0; i < sortedIds.length - 1; i++) {\n        if (sortedIds[i] === sortedIds[i + 1]) {\n          duplication = true;\n        }\n      }\n      client.assert.equal(duplication, false);",
                 "err": {},
                 "isRoot": false,
                 "uuid": "de50614f-df8f-4ac7-bbcf-47a9d2c8813a",
                 "isHook": false,
                 "skipped": false,
-                "labels": [
-                  "required"
-                ]
+                "labels": ["required"]
               },
               {
                 "title": "has an agencyName field",
@@ -138,19 +147,19 @@
                 "pass": true,
                 "fail": false,
                 "pending": false,
-                "code": "client => {\n      /*___nice-to-have___*/\n      client.assert.ok(manifestRes.bodyObj.agencyName);",
+                "code":
+                  "client => {\n      /*___nice-to-have___*/\n      client.assert.ok(manifestRes.bodyObj.agencyName);",
                 "err": {},
                 "isRoot": false,
                 "uuid": "ff5eea6e-5ffd-4409-be73-c35b83608b40",
                 "isHook": false,
                 "skipped": false,
-                "labels": [
-                  "nice-to-have"
-                ]
+                "labels": ["nice-to-have"]
               },
               {
                 "title": "has a width field with a number value",
-                "fullTitle": "generic container - files manifest.json has a width field with a number value",
+                "fullTitle":
+                  "generic container - files manifest.json has a width field with a number value",
                 "timedOut": false,
                 "duration": 0,
                 "state": "passed",
@@ -158,19 +167,19 @@
                 "pass": true,
                 "fail": false,
                 "pending": false,
-                "code": "client => {\n      /*___required___*/\n      const width = manifestRes.bodyObj.width;\n      client.assert.ok(width);\n      client.assert.ok(parseInt(width));",
+                "code":
+                  "client => {\n      /*___required___*/\n      const width = manifestRes.bodyObj.width;\n      client.assert.ok(width);\n      client.assert.ok(parseInt(width));",
                 "err": {},
                 "isRoot": false,
                 "uuid": "9c684b9a-8dfd-49ec-a62b-8c574434af99",
                 "isHook": false,
                 "skipped": false,
-                "labels": [
-                  "required"
-                ]
+                "labels": ["required"]
               },
               {
                 "title": "has a height field with a number value",
-                "fullTitle": "generic container - files manifest.json has a height field with a number value",
+                "fullTitle":
+                  "generic container - files manifest.json has a height field with a number value",
                 "timedOut": false,
                 "duration": 0,
                 "state": "passed",
@@ -178,99 +187,102 @@
                 "pass": true,
                 "fail": false,
                 "pending": false,
-                "code": "client => {\n      /*___required___*/\n      const height = manifestRes.bodyObj.height;\n      client.assert.ok(height);\n      client.assert.ok(parseInt(height));",
+                "code":
+                  "client => {\n      /*___required___*/\n      const height = manifestRes.bodyObj.height;\n      client.assert.ok(height);\n      client.assert.ok(parseInt(height));",
                 "err": {},
                 "isRoot": false,
                 "uuid": "1dd7c0da-f90f-4df7-a901-15167f11c01c",
                 "isHook": false,
                 "skipped": false,
-                "labels": [
-                  "required"
-                ]
+                "labels": ["required"]
               }
             ],
-            "suites": [{
-              "uuid": "7b96f466-d3ce-4c46-a197-38b1e055f4cc",
-              "title": "rootComponents",
-              "fullFile": "/Users/nico.hsieh/Documents/Development/netflix-web-components/da-testing-framework/tests/active/containers/generic-source/01.file.test.js",
-              "file": "/tests/active/containers/generic-source/01.file.test.js",
-              "beforeHooks": [],
-              "afterHooks": [],
-              "tests": [{
-                  "title": "has Exit_URL_iOS id",
-                  "fullTitle": "generic container - files manifest.json rootComponents has Exit_URL_iOS id",
-                  "timedOut": false,
-                  "duration": 1,
-                  "state": "passed",
-                  "speed": "fast",
-                  "pass": true,
-                  "fail": false,
-                  "pending": false,
-                  "code": "client => {\n        /*___required___*/\n        client.assert.equal(manifestRes.componentIds.includes('Exit_URL_iOS'), true);",
-                  "err": {},
-                  "isRoot": false,
-                  "uuid": "d826a0cf-9883-4828-b8d0-eb0f1a6d8ba0",
-                  "isHook": false,
-                  "skipped": false,
-                  "labels": [
-                    "required"
-                  ]
-                },
-                {
-                  "title": "has Exit_URL_Android id",
-                  "fullTitle": "generic container - files manifest.json rootComponents has Exit_URL_Android id",
-                  "timedOut": false,
-                  "duration": 0,
-                  "state": "passed",
-                  "speed": "fast",
-                  "pass": true,
-                  "fail": false,
-                  "pending": false,
-                  "code": "client => {\n        /*___required___*/\n        client.assert.equal(manifestRes.componentIds.includes('Exit_URL_Android'), true);",
-                  "err": {},
-                  "isRoot": false,
-                  "uuid": "8e96196f-9df8-467e-80fb-caff5ac92453",
-                  "isHook": false,
-                  "skipped": false,
-                  "labels": [
-                    "required"
-                  ]
-                },
-                {
-                  "title": "has Exit_URL_Desktop id",
-                  "fullTitle": "generic container - files manifest.json rootComponents has Exit_URL_Desktop id",
-                  "timedOut": false,
-                  "duration": 0,
-                  "state": "passed",
-                  "speed": "fast",
-                  "pass": true,
-                  "fail": false,
-                  "pending": false,
-                  "code": "client => {\n        /*___required___*/\n        client.assert.equal(manifestRes.componentIds.includes('Exit_URL_Desktop'), true);",
-                  "err": {},
-                  "isRoot": false,
-                  "uuid": "034e0a8b-810f-46ea-a992-36b0d263c53e",
-                  "isHook": false,
-                  "skipped": false,
-                  "labels": [
-                    "required"
-                  ]
-                }
-              ],
-              "suites": [],
-              "passes": [
-                "d826a0cf-9883-4828-b8d0-eb0f1a6d8ba0",
-                "8e96196f-9df8-467e-80fb-caff5ac92453",
-                "034e0a8b-810f-46ea-a992-36b0d263c53e"
-              ],
-              "failures": [],
-              "pending": [],
-              "skipped": [],
-              "duration": 1,
-              "root": false,
-              "rootEmpty": false,
-              "_timeout": 10000
-            }],
+            "suites": [
+              {
+                "uuid": "7b96f466-d3ce-4c46-a197-38b1e055f4cc",
+                "title": "rootComponents",
+                "fullFile":
+                  "/Users/nico.hsieh/Documents/Development/netflix-web-components/da-testing-framework/tests/active/containers/generic-source/01.file.test.js",
+                "file": "/tests/active/containers/generic-source/01.file.test.js",
+                "beforeHooks": [],
+                "afterHooks": [],
+                "tests": [
+                  {
+                    "title": "has Exit_URL_iOS id",
+                    "fullTitle":
+                      "generic container - files manifest.json rootComponents has Exit_URL_iOS id",
+                    "timedOut": false,
+                    "duration": 1,
+                    "state": "passed",
+                    "speed": "fast",
+                    "pass": true,
+                    "fail": false,
+                    "pending": false,
+                    "code":
+                      "client => {\n        /*___required___*/\n        client.assert.equal(manifestRes.componentIds.includes('Exit_URL_iOS'), true);",
+                    "err": {},
+                    "isRoot": false,
+                    "uuid": "d826a0cf-9883-4828-b8d0-eb0f1a6d8ba0",
+                    "isHook": false,
+                    "skipped": false,
+                    "labels": ["required"]
+                  },
+                  {
+                    "title": "has Exit_URL_Android id",
+                    "fullTitle":
+                      "generic container - files manifest.json rootComponents has Exit_URL_Android id",
+                    "timedOut": false,
+                    "duration": 0,
+                    "state": "passed",
+                    "speed": "fast",
+                    "pass": true,
+                    "fail": false,
+                    "pending": false,
+                    "code":
+                      "client => {\n        /*___required___*/\n        client.assert.equal(manifestRes.componentIds.includes('Exit_URL_Android'), true);",
+                    "err": {},
+                    "isRoot": false,
+                    "uuid": "8e96196f-9df8-467e-80fb-caff5ac92453",
+                    "isHook": false,
+                    "skipped": false,
+                    "labels": ["required"]
+                  },
+                  {
+                    "title": "has Exit_URL_Desktop id",
+                    "fullTitle":
+                      "generic container - files manifest.json rootComponents has Exit_URL_Desktop id",
+                    "timedOut": false,
+                    "duration": 0,
+                    "state": "passed",
+                    "speed": "fast",
+                    "pass": true,
+                    "fail": false,
+                    "pending": false,
+                    "code":
+                      "client => {\n        /*___required___*/\n        client.assert.equal(manifestRes.componentIds.includes('Exit_URL_Desktop'), true);",
+                    "err": {},
+                    "isRoot": false,
+                    "uuid": "034e0a8b-810f-46ea-a992-36b0d263c53e",
+                    "isHook": false,
+                    "skipped": false,
+                    "labels": ["required"]
+                  }
+                ],
+                "suites": [],
+                "passes": [
+                  "d826a0cf-9883-4828-b8d0-eb0f1a6d8ba0",
+                  "8e96196f-9df8-467e-80fb-caff5ac92453",
+                  "034e0a8b-810f-46ea-a992-36b0d263c53e"
+                ],
+                "failures": [],
+                "pending": [],
+                "skipped": [],
+                "duration": 1,
+                "root": false,
+                "rootEmpty": false,
+                "_timeout": 10000
+              }
+            ],
             "passes": [
               "3038d0b5-92cb-42bb-a661-0c99e39fe4f1",
               "de50614f-df8f-4ac7-bbcf-47a9d2c8813a",
@@ -289,11 +301,13 @@
           {
             "uuid": "90e7cc36-2421-45bc-93c8-319404b3ffc0",
             "title": "backup.json",
-            "fullFile": "/Users/nico.hsieh/Documents/Development/netflix-web-components/da-testing-framework/tests/active/containers/generic-source/01.file.test.js",
+            "fullFile":
+              "/Users/nico.hsieh/Documents/Development/netflix-web-components/da-testing-framework/tests/active/containers/generic-source/01.file.test.js",
             "file": "/tests/active/containers/generic-source/01.file.test.js",
             "beforeHooks": [],
             "afterHooks": [],
-            "tests": [{
+            "tests": [
+              {
                 "title": "is present",
                 "fullTitle": "generic container - files backup.json is present",
                 "timedOut": false,
@@ -303,15 +317,14 @@
                 "pass": true,
                 "fail": false,
                 "pending": false,
-                "code": "client => {\n      /*___required___*/\n      client.assert.equal(backupRes.res.statusCode, 200);",
+                "code":
+                  "client => {\n      /*___required___*/\n      client.assert.equal(backupRes.res.statusCode, 200);",
                 "err": {},
                 "isRoot": false,
                 "uuid": "b2b1337a-ab02-4818-8cac-43498262fd8f",
                 "isHook": false,
                 "skipped": false,
-                "labels": [
-                  "required"
-                ]
+                "labels": ["required"]
               },
               {
                 "title": "doesn't have duplicate keys",
@@ -323,99 +336,102 @@
                 "pass": true,
                 "fail": false,
                 "pending": false,
-                "code": "client => {\n      /*___required___*/\n      let duplication = false;\n      backupRes.assetKeys.forEach(item => {\n        const regEx = new RegExp(`\"${item}\"`, 'g');\n        const matches = backupRes.body.match(regEx);\n        if (matches.length > 1) {\n          duplication = true;\n        }\n      });\n      client.assert.equal(duplication, false);",
+                "code":
+                  "client => {\n      /*___required___*/\n      let duplication = false;\n      backupRes.assetKeys.forEach(item => {\n        const regEx = new RegExp(`\"${item}\"`, 'g');\n        const matches = backupRes.body.match(regEx);\n        if (matches.length > 1) {\n          duplication = true;\n        }\n      });\n      client.assert.equal(duplication, false);",
                 "err": {},
                 "isRoot": false,
                 "uuid": "597ec3d5-97b4-4399-b70a-4a35103bdee9",
                 "isHook": false,
                 "skipped": false,
-                "labels": [
-                  "required"
-                ]
+                "labels": ["required"]
               }
             ],
-            "suites": [{
-              "uuid": "0a701dc2-7e74-4977-840c-0e3b536c1233",
-              "title": "rootAssets",
-              "fullFile": "/Users/nico.hsieh/Documents/Development/netflix-web-components/da-testing-framework/tests/active/containers/generic-source/01.file.test.js",
-              "file": "/tests/active/containers/generic-source/01.file.test.js",
-              "beforeHooks": [],
-              "afterHooks": [],
-              "tests": [{
-                  "title": "has an url.Exit_URL_iOS field",
-                  "fullTitle": "generic container - files backup.json rootAssets has an url.Exit_URL_iOS field",
-                  "timedOut": false,
-                  "duration": 0,
-                  "state": "passed",
-                  "speed": "fast",
-                  "pass": true,
-                  "fail": false,
-                  "pending": false,
-                  "code": "client => {\n        /*___required___*/\n        client.assert.equal(backupRes.assetKeys.includes('url.Exit_URL_iOS'), true);",
-                  "err": {},
-                  "isRoot": false,
-                  "uuid": "022570d1-0f27-4a3e-aedc-d27c4fb7f4b9",
-                  "isHook": false,
-                  "skipped": false,
-                  "labels": [
-                    "required"
-                  ]
-                },
-                {
-                  "title": "has an url.Exit_URL_Android field",
-                  "fullTitle": "generic container - files backup.json rootAssets has an url.Exit_URL_Android field",
-                  "timedOut": false,
-                  "duration": 0,
-                  "state": "passed",
-                  "speed": "fast",
-                  "pass": true,
-                  "fail": false,
-                  "pending": false,
-                  "code": "client => {\n        /*___required___*/\n        client.assert.equal(backupRes.assetKeys.includes('url.Exit_URL_Android'), true);",
-                  "err": {},
-                  "isRoot": false,
-                  "uuid": "0e5f593f-24b3-430a-9e0d-1c916bc57f82",
-                  "isHook": false,
-                  "skipped": false,
-                  "labels": [
-                    "required"
-                  ]
-                },
-                {
-                  "title": "has an url.Exit_URL_Desktop field",
-                  "fullTitle": "generic container - files backup.json rootAssets has an url.Exit_URL_Desktop field",
-                  "timedOut": false,
-                  "duration": 0,
-                  "state": "passed",
-                  "speed": "fast",
-                  "pass": true,
-                  "fail": false,
-                  "pending": false,
-                  "code": "client => {\n        /*___required___*/\n        client.assert.equal(backupRes.assetKeys.includes('url.Exit_URL_Desktop'), true);",
-                  "err": {},
-                  "isRoot": false,
-                  "uuid": "82c10ab5-e32f-4bed-87b0-ff73270e4a7a",
-                  "isHook": false,
-                  "skipped": false,
-                  "labels": [
-                    "required"
-                  ]
-                }
-              ],
-              "suites": [],
-              "passes": [
-                "022570d1-0f27-4a3e-aedc-d27c4fb7f4b9",
-                "0e5f593f-24b3-430a-9e0d-1c916bc57f82",
-                "82c10ab5-e32f-4bed-87b0-ff73270e4a7a"
-              ],
-              "failures": [],
-              "pending": [],
-              "skipped": [],
-              "duration": 0,
-              "root": false,
-              "rootEmpty": false,
-              "_timeout": 10000
-            }],
+            "suites": [
+              {
+                "uuid": "0a701dc2-7e74-4977-840c-0e3b536c1233",
+                "title": "rootAssets",
+                "fullFile":
+                  "/Users/nico.hsieh/Documents/Development/netflix-web-components/da-testing-framework/tests/active/containers/generic-source/01.file.test.js",
+                "file": "/tests/active/containers/generic-source/01.file.test.js",
+                "beforeHooks": [],
+                "afterHooks": [],
+                "tests": [
+                  {
+                    "title": "has an url.Exit_URL_iOS field",
+                    "fullTitle":
+                      "generic container - files backup.json rootAssets has an url.Exit_URL_iOS field",
+                    "timedOut": false,
+                    "duration": 0,
+                    "state": "passed",
+                    "speed": "fast",
+                    "pass": true,
+                    "fail": false,
+                    "pending": false,
+                    "code":
+                      "client => {\n        /*___required___*/\n        client.assert.equal(backupRes.assetKeys.includes('url.Exit_URL_iOS'), true);",
+                    "err": {},
+                    "isRoot": false,
+                    "uuid": "022570d1-0f27-4a3e-aedc-d27c4fb7f4b9",
+                    "isHook": false,
+                    "skipped": false,
+                    "labels": ["required"]
+                  },
+                  {
+                    "title": "has an url.Exit_URL_Android field",
+                    "fullTitle":
+                      "generic container - files backup.json rootAssets has an url.Exit_URL_Android field",
+                    "timedOut": false,
+                    "duration": 0,
+                    "state": "passed",
+                    "speed": "fast",
+                    "pass": true,
+                    "fail": false,
+                    "pending": false,
+                    "code":
+                      "client => {\n        /*___required___*/\n        client.assert.equal(backupRes.assetKeys.includes('url.Exit_URL_Android'), true);",
+                    "err": {},
+                    "isRoot": false,
+                    "uuid": "0e5f593f-24b3-430a-9e0d-1c916bc57f82",
+                    "isHook": false,
+                    "skipped": false,
+                    "labels": ["required"]
+                  },
+                  {
+                    "title": "has an url.Exit_URL_Desktop field",
+                    "fullTitle":
+                      "generic container - files backup.json rootAssets has an url.Exit_URL_Desktop field",
+                    "timedOut": false,
+                    "duration": 0,
+                    "state": "passed",
+                    "speed": "fast",
+                    "pass": true,
+                    "fail": false,
+                    "pending": false,
+                    "code":
+                      "client => {\n        /*___required___*/\n        client.assert.equal(backupRes.assetKeys.includes('url.Exit_URL_Desktop'), true);",
+                    "err": {},
+                    "isRoot": false,
+                    "uuid": "82c10ab5-e32f-4bed-87b0-ff73270e4a7a",
+                    "isHook": false,
+                    "skipped": false,
+                    "labels": ["required"]
+                  }
+                ],
+                "suites": [],
+                "passes": [
+                  "022570d1-0f27-4a3e-aedc-d27c4fb7f4b9",
+                  "0e5f593f-24b3-430a-9e0d-1c916bc57f82",
+                  "82c10ab5-e32f-4bed-87b0-ff73270e4a7a"
+                ],
+                "failures": [],
+                "pending": [],
+                "skipped": [],
+                "duration": 0,
+                "root": false,
+                "rootEmpty": false,
+                "_timeout": 10000
+              }
+            ],
             "passes": [
               "b2b1337a-ab02-4818-8cac-43498262fd8f",
               "597ec3d5-97b4-4399-b70a-4a35103bdee9"
@@ -429,9 +445,7 @@
             "_timeout": 10000
           }
         ],
-        "passes": [
-          "de36bd3f-787a-42ff-9c20-16700cadb6d2"
-        ],
+        "passes": ["de36bd3f-787a-42ff-9c20-16700cadb6d2"],
         "failures": [],
         "pending": [],
         "skipped": [],
@@ -443,121 +457,131 @@
       {
         "uuid": "ec7fa10f-c796-42f9-a52f-94d9dbe1931d",
         "title": "generic container - network",
-        "fullFile": "/Users/nico.hsieh/Documents/Development/netflix-web-components/da-testing-framework/tests/active/containers/generic-source/02.network.test.js",
+        "fullFile":
+          "/Users/nico.hsieh/Documents/Development/netflix-web-components/da-testing-framework/tests/active/containers/generic-source/02.network.test.js",
         "file": "/tests/active/containers/generic-source/02.network.test.js",
-        "beforeHooks": [{
-          "title": "\"before all\" hook",
-          "fullTitle": "generic container - network \"before all\" hook",
-          "timedOut": false,
-          "duration": 2,
-          "pass": false,
-          "fail": false,
-          "pending": false,
-          "code": "(client, done) => {\n    // init bmp proxy\n    bmp\n      .init(client.globals.bmpApi, client.globals.harPort)\n      .then(() => {\n        bmp.resetHAR('Test Page');\n      })\n      .then(() => {\n        client.url(getVal('adUrlBackup'));\n        done();\n      })\n      .catch(err => {\n        log(err);\n      });",
-          "err": {},
-          "isRoot": false,
-          "uuid": "5a4fb3ab-140c-4d9b-ba9e-ab021f5eb40c",
-          "isHook": true,
-          "skipped": false
-        }],
-        "afterHooks": [{
-          "title": "\"after all\" hook",
-          "fullTitle": "generic container - network \"after all\" hook",
-          "timedOut": false,
-          "duration": 57,
-          "pass": false,
-          "fail": false,
-          "pending": false,
-          "code": "(client, done) => {\n    client.end(function() {\n      done();\n    });",
-          "err": {},
-          "isRoot": false,
-          "uuid": "fc9a8043-d8df-4db0-9a75-cbdcce33bda9",
-          "isHook": true,
-          "skipped": false
-        }],
+        "beforeHooks": [
+          {
+            "title": "\"before all\" hook",
+            "fullTitle": "generic container - network \"before all\" hook",
+            "timedOut": false,
+            "duration": 2,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code":
+              "(client, done) => {\n    // init bmp proxy\n    bmp\n      .init(client.globals.bmpApi, client.globals.harPort)\n      .then(() => {\n        bmp.resetHAR('Test Page');\n      })\n      .then(() => {\n        client.url(getVal('adUrlBackup'));\n        done();\n      })\n      .catch(err => {\n        log(err);\n      });",
+            "err": {},
+            "isRoot": false,
+            "uuid": "5a4fb3ab-140c-4d9b-ba9e-ab021f5eb40c",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "afterHooks": [
+          {
+            "title": "\"after all\" hook",
+            "fullTitle": "generic container - network \"after all\" hook",
+            "timedOut": false,
+            "duration": 57,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "(client, done) => {\n    client.end(function() {\n      done();\n    });",
+            "err": {},
+            "isRoot": false,
+            "uuid": "fc9a8043-d8df-4db0-9a75-cbdcce33bda9",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
         "tests": [],
-        "suites": [{
-          "uuid": "0ea38949-ab27-4f99-a294-a75f8d3de967",
-          "title": "Monet life cycle",
-          "fullFile": "/Users/nico.hsieh/Documents/Development/netflix-web-components/da-testing-framework/tests/active/containers/generic-source/02.network.test.js",
-          "file": "/tests/active/containers/generic-source/02.network.test.js",
-          "beforeHooks": [],
-          "afterHooks": [],
-          "tests": [{
-              "title": "reports BUILD_MONET_REQUEST",
-              "fullTitle": "generic container - network Monet life cycle reports BUILD_MONET_REQUEST",
-              "timedOut": false,
-              "duration": 6845,
-              "state": "passed",
-              "speed": "slow",
-              "pass": true,
-              "fail": false,
-              "pending": false,
-              "code": "client => {\n      /*___required___*/\n      // wait for the max ad life cycle 15 seconds\n      client.pause(6 * 1000, () => {\n        eventIsPresentInRequests('BUILD_MONET_REQUEST', client);\n      });",
-              "err": {},
-              "isRoot": false,
-              "uuid": "ed03a385-d97a-48e3-8f01-6d190b7ef639",
-              "isHook": false,
-              "skipped": false,
-              "labels": [
-                "required"
-              ]
-            },
-            {
-              "title": "reports MONET_AD_VISIBLE",
-              "fullTitle": "generic container - network Monet life cycle reports MONET_AD_VISIBLE",
-              "timedOut": false,
-              "duration": 1003,
-              "state": "passed",
-              "speed": "slow",
-              "pass": true,
-              "fail": false,
-              "pending": false,
-              "code": "client => {\n      /*___required___*/\n      client.pause(1 * 1000, () => {\n        eventIsPresentInRequests('MONET_AD_VISIBLE', client);\n      });",
-              "err": {},
-              "isRoot": false,
-              "uuid": "200ac587-a9f9-483f-9c59-580ee0a30dff",
-              "isHook": false,
-              "skipped": false,
-              "labels": [
-                "required"
-              ]
-            },
-            {
-              "title": "reports MONET_ASSETS_LOADED",
-              "fullTitle": "generic container - network Monet life cycle reports MONET_ASSETS_LOADED",
-              "timedOut": false,
-              "duration": 1005,
-              "state": "passed",
-              "speed": "slow",
-              "pass": true,
-              "fail": false,
-              "pending": false,
-              "code": "client => {\n      /*___required___*/\n      client.pause(1 * 1000, () => {\n        eventIsPresentInRequests('MONET_ASSETS_LOADED', client);\n      });",
-              "err": {},
-              "isRoot": false,
-              "uuid": "a52de527-ca6b-4e8e-acd4-379eb87059c3",
-              "isHook": false,
-              "skipped": false,
-              "labels": [
-                "required"
-              ]
-            }
-          ],
-          "suites": [],
-          "passes": [
-            "ed03a385-d97a-48e3-8f01-6d190b7ef639",
-            "200ac587-a9f9-483f-9c59-580ee0a30dff",
-            "a52de527-ca6b-4e8e-acd4-379eb87059c3"
-          ],
-          "failures": [],
-          "pending": [],
-          "skipped": [],
-          "duration": 8853,
-          "root": false,
-          "rootEmpty": false,
-          "_timeout": 10000
-        }],
+        "suites": [
+          {
+            "uuid": "0ea38949-ab27-4f99-a294-a75f8d3de967",
+            "title": "Monet life cycle",
+            "fullFile":
+              "/Users/nico.hsieh/Documents/Development/netflix-web-components/da-testing-framework/tests/active/containers/generic-source/02.network.test.js",
+            "file": "/tests/active/containers/generic-source/02.network.test.js",
+            "beforeHooks": [],
+            "afterHooks": [],
+            "tests": [
+              {
+                "title": "reports BUILD_MONET_REQUEST",
+                "fullTitle":
+                  "generic container - network Monet life cycle reports BUILD_MONET_REQUEST",
+                "timedOut": false,
+                "duration": 6845,
+                "state": "passed",
+                "speed": "slow",
+                "pass": true,
+                "fail": false,
+                "pending": false,
+                "code":
+                  "client => {\n      /*___required___*/\n      // wait for the max ad life cycle 15 seconds\n      client.pause(6 * 1000, () => {\n        eventIsPresentInRequests('BUILD_MONET_REQUEST', client);\n      });",
+                "err": {},
+                "isRoot": false,
+                "uuid": "ed03a385-d97a-48e3-8f01-6d190b7ef639",
+                "isHook": false,
+                "skipped": false,
+                "labels": ["required"]
+              },
+              {
+                "title": "reports MONET_AD_VISIBLE",
+                "fullTitle":
+                  "generic container - network Monet life cycle reports MONET_AD_VISIBLE",
+                "timedOut": false,
+                "duration": 1003,
+                "state": "passed",
+                "speed": "slow",
+                "pass": true,
+                "fail": false,
+                "pending": false,
+                "code":
+                  "client => {\n      /*___required___*/\n      client.pause(1 * 1000, () => {\n        eventIsPresentInRequests('MONET_AD_VISIBLE', client);\n      });",
+                "err": {},
+                "isRoot": false,
+                "uuid": "200ac587-a9f9-483f-9c59-580ee0a30dff",
+                "isHook": false,
+                "skipped": false,
+                "labels": ["required"]
+              },
+              {
+                "title": "reports MONET_ASSETS_LOADED",
+                "fullTitle":
+                  "generic container - network Monet life cycle reports MONET_ASSETS_LOADED",
+                "timedOut": false,
+                "duration": 1005,
+                "state": "passed",
+                "speed": "slow",
+                "pass": true,
+                "fail": false,
+                "pending": false,
+                "code":
+                  "client => {\n      /*___required___*/\n      client.pause(1 * 1000, () => {\n        eventIsPresentInRequests('MONET_ASSETS_LOADED', client);\n      });",
+                "err": {},
+                "isRoot": false,
+                "uuid": "a52de527-ca6b-4e8e-acd4-379eb87059c3",
+                "isHook": false,
+                "skipped": false,
+                "labels": ["required"]
+              }
+            ],
+            "suites": [],
+            "passes": [
+              "ed03a385-d97a-48e3-8f01-6d190b7ef639",
+              "200ac587-a9f9-483f-9c59-580ee0a30dff",
+              "a52de527-ca6b-4e8e-acd4-379eb87059c3"
+            ],
+            "failures": [],
+            "pending": [],
+            "skipped": [],
+            "duration": 8853,
+            "root": false,
+            "rootEmpty": false,
+            "_timeout": 10000
+          }
+        ],
         "passes": [],
         "failures": [],
         "pending": [],
@@ -570,49 +594,59 @@
       {
         "uuid": "f8adfc81-a062-496d-9426-e3537b9edbf1",
         "title": "generic container - elements",
-        "fullFile": "/Users/nico.hsieh/Documents/Development/netflix-web-components/da-testing-framework/tests/active/containers/generic-source/03.element.test.js",
+        "fullFile":
+          "/Users/nico.hsieh/Documents/Development/netflix-web-components/da-testing-framework/tests/active/containers/generic-source/03.element.test.js",
         "file": "/tests/active/containers/generic-source/03.element.test.js",
-        "beforeHooks": [{
-          "title": "\"before all\" hook",
-          "fullTitle": "generic container - elements \"before all\" hook",
-          "timedOut": false,
-          "duration": 1,
-          "pass": false,
-          "fail": false,
-          "pending": false,
-          "code": "(client, done) => {\n    client.url(variables.getVal('adUrlBackup'));\n    done();",
-          "err": {},
-          "isRoot": false,
-          "uuid": "172e463e-67bd-413d-b0b3-8bea76c01b25",
-          "isHook": true,
-          "skipped": false
-        }],
-        "afterHooks": [{
-          "title": "\"after all\" hook",
-          "fullTitle": "generic container - elements \"after all\" hook",
-          "timedOut": false,
-          "duration": 388,
-          "pass": false,
-          "fail": false,
-          "pending": false,
-          "code": "(client, done) => {\n    client.end(function() {\n      done();\n    });",
-          "err": {},
-          "isRoot": false,
-          "uuid": "57baf6c8-5979-4f5a-845c-8e67db00d1e0",
-          "isHook": true,
-          "skipped": false
-        }],
+        "beforeHooks": [
+          {
+            "title": "\"before all\" hook",
+            "fullTitle": "generic container - elements \"before all\" hook",
+            "timedOut": false,
+            "duration": 1,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code":
+              "(client, done) => {\n    client.url(variables.getVal('adUrlBackup'));\n    done();",
+            "err": {},
+            "isRoot": false,
+            "uuid": "172e463e-67bd-413d-b0b3-8bea76c01b25",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "afterHooks": [
+          {
+            "title": "\"after all\" hook",
+            "fullTitle": "generic container - elements \"after all\" hook",
+            "timedOut": false,
+            "duration": 388,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "(client, done) => {\n    client.end(function() {\n      done();\n    });",
+            "err": {},
+            "isRoot": false,
+            "uuid": "57baf6c8-5979-4f5a-845c-8e67db00d1e0",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
         "tests": [],
-        "suites": [{
+        "suites": [
+          {
             "uuid": "ed65111e-84a6-4af3-bb96-81a0c4897ba9",
             "title": "monet-integrator",
-            "fullFile": "/Users/nico.hsieh/Documents/Development/netflix-web-components/da-testing-framework/tests/active/containers/generic-source/03.element.test.js",
+            "fullFile":
+              "/Users/nico.hsieh/Documents/Development/netflix-web-components/da-testing-framework/tests/active/containers/generic-source/03.element.test.js",
             "file": "/tests/active/containers/generic-source/03.element.test.js",
             "beforeHooks": [],
             "afterHooks": [],
-            "tests": [{
+            "tests": [
+              {
                 "title": "is present within 3 seconds",
-                "fullTitle": "generic container - elements monet-integrator is present within 3 seconds",
+                "fullTitle":
+                  "generic container - elements monet-integrator is present within 3 seconds",
                 "timedOut": false,
                 "duration": 666,
                 "state": "passed",
@@ -620,19 +654,19 @@
                 "pass": true,
                 "fail": false,
                 "pending": false,
-                "code": "client => {\n      /*___required___*/\n      client.waitForElementPresent('monet-integrator', 3000, () => {\n        // write data to window for later user\n        // can't access directly since it is a promise\n        client.execute(function() {\n          var mi = document.querySelector('monet-integrator');\n          // TODO: use monet data when network reroute is complete\n          mi.getBackupMonetData().then(function(data) {\n            window.monetData = data;\n          });\n        });\n      });",
+                "code":
+                  "client => {\n      /*___required___*/\n      client.waitForElementPresent('monet-integrator', 3000, () => {\n        // write data to window for later user\n        // can't access directly since it is a promise\n        client.execute(function() {\n          var mi = document.querySelector('monet-integrator');\n          // TODO: use monet data when network reroute is complete\n          mi.getBackupMonetData().then(function(data) {\n            window.monetData = data;\n          });\n        });\n      });",
                 "err": {},
                 "isRoot": false,
                 "uuid": "32f8fa35-8a8a-4d64-b120-66e0c6aba61a",
                 "isHook": false,
                 "skipped": false,
-                "labels": [
-                  "required"
-                ]
+                "labels": ["required"]
               },
               {
                 "title": "is ready after 2 seconds",
-                "fullTitle": "generic container - elements monet-integrator is ready after 2 seconds",
+                "fullTitle":
+                  "generic container - elements monet-integrator is ready after 2 seconds",
                 "timedOut": false,
                 "duration": 0,
                 "state": "passed",
@@ -640,15 +674,14 @@
                 "pass": true,
                 "fail": false,
                 "pending": false,
-                "code": "client => {\n      client =>\n        pause(2000).getAttribute('monet-integrator', 'ready', result => {\n          client.assert.equal(result.status, 0);\n          client.assert.notEqual(result.value, null);\n        });",
+                "code":
+                  "client => {\n      client =>\n        pause(2000).getAttribute('monet-integrator', 'ready', result => {\n          client.assert.equal(result.status, 0);\n          client.assert.notEqual(result.value, null);\n        });",
                 "err": {},
                 "isRoot": false,
                 "uuid": "16e65e40-b182-4c80-92b0-277b38281db3",
                 "isHook": false,
                 "skipped": false,
-                "labels": [
-                  "nice-to-have"
-                ]
+                "labels": ["nice-to-have"]
               },
               {
                 "title": "has monet data",
@@ -660,15 +693,14 @@
                 "pass": true,
                 "fail": false,
                 "pending": false,
-                "code": "client => {\n      /*___required___*/\n      // store the data for later use\n      client.execute(\n        function() {\n          var data = window.monetData;\n          return data;\n        },\n        [],\n        result => {\n          client.assert.equal(result.status, 0);\n          client.assert.ok(Object.keys(result.value).length > 0);\n          monetData = result.value;\n        }\n      );",
+                "code":
+                  "client => {\n      /*___required___*/\n      // store the data for later use\n      client.execute(\n        function() {\n          var data = window.monetData;\n          return data;\n        },\n        [],\n        result => {\n          client.assert.equal(result.status, 0);\n          client.assert.ok(Object.keys(result.value).length > 0);\n          monetData = result.value;\n        }\n      );",
                 "err": {},
                 "isRoot": false,
                 "uuid": "f6c37c02-4a76-41d8-84bc-06f7d9b10872",
                 "isHook": false,
                 "skipped": false,
-                "labels": [
-                  "required"
-                ]
+                "labels": ["required"]
               }
             ],
             "suites": [],
@@ -688,37 +720,40 @@
           {
             "uuid": "6194b516-43ad-42db-b348-7131855be5a6",
             "title": "elements",
-            "fullFile": "/Users/nico.hsieh/Documents/Development/netflix-web-components/da-testing-framework/tests/active/containers/generic-source/03.element.test.js",
+            "fullFile":
+              "/Users/nico.hsieh/Documents/Development/netflix-web-components/da-testing-framework/tests/active/containers/generic-source/03.element.test.js",
             "file": "/tests/active/containers/generic-source/03.element.test.js",
             "beforeHooks": [],
             "afterHooks": [],
-            "tests": [{
-              "title": "uses correct data via data-dynamic-key ",
-              "fullTitle": "generic container - elements elements uses correct data via data-dynamic-key ",
-              "timedOut": false,
-              "duration": 142,
-              "state": "failed",
-              "pass": false,
-              "fail": true,
-              "pending": false,
-              "code": "client => {\n      /*___nice-to-have___*/\n      client.execute(\n        function() {\n          // scan through the element to discover Netflix components\n          // check for netflix-\n          window.netflixComponents = [];\n          var allNodes = document.body.querySelectorAll('*');\n          var netflixNodeCount = 0;\n          for (var i = 0; i < allNodes.length; i++) {\n            var node = allNodes[i];\n            var name = allNodes[i].tagName.toLocaleLowerCase();\n            var regEx = /^netflix-/;\n            if (regEx.test(name)) {\n              var name = node.tagName.toLocaleLowerCase();\n              var className = name + '-test-target' + netflixNodeCount;\n              netflixNodeCount++;\n              node.classList.add(className);\n              window.netflixComponents.push({\n                name: name,\n                selector: '.' + className,\n                dataDynamicKey: node.getAttribute('data-dynamic-key')\n              });\n              if (name === 'netflix-video' && !node.playing) {\n                // try to play the video to make sure the source is set\n                node.play();\n                setTimeout(() => {\n                  el.pause();\n                }, 10);\n              }\n            }\n          }\n          return window.netflixComponents;\n        },\n        [],\n        result => {\n          client.assert.equal(result.status, 0);\n          client.assert.notEqual(result.value.length, 0);\n          netflixComponentsInfo = result.value;\n          result.value.forEach(item => {\n            if (item.dataDynamicKey) {\n              // grab data from json\n              client.execute(\n                function(name, selector) {\n                  var el = document.querySelector(selector);\n                  var value = 'abcd';\n                  switch (name) {\n                    case 'netflix-cta':\n                      value = el.querySelector('.copy span').innerText;\n                      break;\n                    case 'netflix-text':\n                      value = el.querySelector('span').innerText;\n                      break;\n                    case 'netflix-img':\n                      value = el.querySelector('img').src;\n                      break;\n                    case 'netflix-video':\n                      value = el.querySelector('video').getAttribute('src');\n                      break;\n                    default:\n                      value = null;\n                      break;\n                  }\n                  return value;\n                },\n                [item.name, item.selector],\n                result => {\n                  client.assert.equal(result.status, 0);\n                  const data = monetData.rootAssets;\n                  const key = item.dataDynamicKey;\n                  switch (item.name) {\n                    case 'netflix-cta':\n                    case 'netflix-text':\n                      client.assert.equal(data[`text.${key}`].text, result.value);\n                      break;\n                    case 'netflix-img':\n                      client.assert.equal(data[`image.${key}`].url, result.value);\n                      break;\n                    case 'netflix-video':\n                      client.assert.equal(data[`video.${key}`].url, result.value);\n                      break;\n                    default:\n                      console.log(`Unknown compoent: ${item - name}`);\n                      client.assert.equal(true, true);\n                      break;\n                  }\n                }\n              );\n            } else {\n              client.assert.equal(true, true);\n            }\n          });\n        }\n      );",
-              "err": {
-                "message": "AssertionError: Failed [equal]: (-1 == 0) - expected \"0\" but got: \"-1\"",
-                "estack": "    at NightwatchAPI.client.execute.result (tests/active/containers/generic-source/03.element.test.js:135:33)\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:118:7)"
-              },
-              "isRoot": false,
-              "uuid": "4fa9148d-dae7-4ceb-a130-42640897d6a9",
-              "isHook": false,
-              "skipped": false,
-              "labels": [
-                "nice-to-have"
-              ]
-            }],
+            "tests": [
+              {
+                "title": "uses correct data via data-dynamic-key ",
+                "fullTitle":
+                  "generic container - elements elements uses correct data via data-dynamic-key ",
+                "timedOut": false,
+                "duration": 142,
+                "state": "failed",
+                "pass": false,
+                "fail": true,
+                "pending": false,
+                "code":
+                  "client => {\n      /*___nice-to-have___*/\n      client.execute(\n        function() {\n          // scan through the element to discover Netflix components\n          // check for netflix-\n          window.netflixComponents = [];\n          var allNodes = document.body.querySelectorAll('*');\n          var netflixNodeCount = 0;\n          for (var i = 0; i < allNodes.length; i++) {\n            var node = allNodes[i];\n            var name = allNodes[i].tagName.toLocaleLowerCase();\n            var regEx = /^netflix-/;\n            if (regEx.test(name)) {\n              var name = node.tagName.toLocaleLowerCase();\n              var className = name + '-test-target' + netflixNodeCount;\n              netflixNodeCount++;\n              node.classList.add(className);\n              window.netflixComponents.push({\n                name: name,\n                selector: '.' + className,\n                dataDynamicKey: node.getAttribute('data-dynamic-key')\n              });\n              if (name === 'netflix-video' && !node.playing) {\n                // try to play the video to make sure the source is set\n                node.play();\n                setTimeout(() => {\n                  el.pause();\n                }, 10);\n              }\n            }\n          }\n          return window.netflixComponents;\n        },\n        [],\n        result => {\n          client.assert.equal(result.status, 0);\n          client.assert.notEqual(result.value.length, 0);\n          netflixComponentsInfo = result.value;\n          result.value.forEach(item => {\n            if (item.dataDynamicKey) {\n              // grab data from json\n              client.execute(\n                function(name, selector) {\n                  var el = document.querySelector(selector);\n                  var value = 'abcd';\n                  switch (name) {\n                    case 'netflix-cta':\n                      value = el.querySelector('.copy span').innerText;\n                      break;\n                    case 'netflix-text':\n                      value = el.querySelector('span').innerText;\n                      break;\n                    case 'netflix-img':\n                      value = el.querySelector('img').src;\n                      break;\n                    case 'netflix-video':\n                      value = el.querySelector('video').getAttribute('src');\n                      break;\n                    default:\n                      value = null;\n                      break;\n                  }\n                  return value;\n                },\n                [item.name, item.selector],\n                result => {\n                  client.assert.equal(result.status, 0);\n                  const data = monetData.rootAssets;\n                  const key = item.dataDynamicKey;\n                  switch (item.name) {\n                    case 'netflix-cta':\n                    case 'netflix-text':\n                      client.assert.equal(data[`text.${key}`].text, result.value);\n                      break;\n                    case 'netflix-img':\n                      client.assert.equal(data[`image.${key}`].url, result.value);\n                      break;\n                    case 'netflix-video':\n                      client.assert.equal(data[`video.${key}`].url, result.value);\n                      break;\n                    default:\n                      console.log(`Unknown compoent: ${item - name}`);\n                      client.assert.equal(true, true);\n                      break;\n                  }\n                }\n              );\n            } else {\n              client.assert.equal(true, true);\n            }\n          });\n        }\n      );",
+                "err": {
+                  "message":
+                    "AssertionError: Failed [equal]: (-1 == 0) - expected \"0\" but got: \"-1\"",
+                  "estack":
+                    "    at NightwatchAPI.client.execute.result (tests/active/containers/generic-source/03.element.test.js:135:33)\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:118:7)"
+                },
+                "isRoot": false,
+                "uuid": "4fa9148d-dae7-4ceb-a130-42640897d6a9",
+                "isHook": false,
+                "skipped": false,
+                "labels": ["nice-to-have"]
+              }
+            ],
             "suites": [],
             "passes": [],
-            "failures": [
-              "4fa9148d-dae7-4ceb-a130-42640897d6a9"
-            ],
+            "failures": ["4fa9148d-dae7-4ceb-a130-42640897d6a9"],
             "pending": [],
             "skipped": [],
             "duration": 142,
@@ -739,24 +774,29 @@
       {
         "uuid": "702e43d9-a6ac-44a7-a547-0fbd7c0255b9",
         "title": "generic container - click",
-        "fullFile": "/Users/nico.hsieh/Documents/Development/netflix-web-components/da-testing-framework/tests/active/containers/generic-source/04.click.test.js",
+        "fullFile":
+          "/Users/nico.hsieh/Documents/Development/netflix-web-components/da-testing-framework/tests/active/containers/generic-source/04.click.test.js",
         "file": "/tests/active/containers/generic-source/04.click.test.js",
-        "beforeHooks": [{
-          "title": "\"before all\" hook",
-          "fullTitle": "generic container - click \"before all\" hook",
-          "timedOut": false,
-          "duration": 1,
-          "pass": false,
-          "fail": false,
-          "pending": false,
-          "code": "(client, done) => {\n    // increase listener amount limit\n    eventEmitter.defaultMaxListeners = 100;\n    client.url(variables.getVal('adUrlBackup'));\n    done();",
-          "err": {},
-          "isRoot": false,
-          "uuid": "2e59fb31-83d7-4b4e-b72d-5a4fac54e13c",
-          "isHook": true,
-          "skipped": false
-        }],
-        "afterHooks": [{
+        "beforeHooks": [
+          {
+            "title": "\"before all\" hook",
+            "fullTitle": "generic container - click \"before all\" hook",
+            "timedOut": false,
+            "duration": 1,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code":
+              "(client, done) => {\n    // increase listener amount limit\n    eventEmitter.defaultMaxListeners = 100;\n    client.url(variables.getVal('adUrlBackup'));\n    done();",
+            "err": {},
+            "isRoot": false,
+            "uuid": "2e59fb31-83d7-4b4e-b72d-5a4fac54e13c",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "afterHooks": [
+          {
             "title": "\"after all\" hook",
             "fullTitle": "generic container - click \"after all\" hook",
             "timedOut": false,
@@ -788,92 +828,96 @@
           }
         ],
         "tests": [],
-        "suites": [{
-          "uuid": "376806c3-c368-40de-89ea-9a7d05543607",
-          "title": "ad exit",
-          "fullFile": "/Users/nico.hsieh/Documents/Development/netflix-web-components/da-testing-framework/tests/active/containers/generic-source/04.click.test.js",
-          "file": "/tests/active/containers/generic-source/04.click.test.js",
-          "beforeHooks": [],
-          "afterHooks": [],
-          "tests": [{
-              "title": "only has one window open before ad click",
-              "fullTitle": "generic container - click ad exit only has one window open before ad click",
-              "timedOut": false,
-              "duration": 5,
-              "state": "passed",
-              "speed": "fast",
-              "pass": true,
-              "fail": false,
-              "pending": false,
-              "code": "client => {\n      /*___required___*/\n      client.windowHandles(winResult => {\n        client.assert.equal(winResult.value.length, 1);\n      });",
-              "err": {},
-              "isRoot": false,
-              "uuid": "2989c1e6-6679-45a1-9934-1f0239970d6a",
-              "isHook": false,
-              "skipped": false,
-              "labels": [
-                "required"
-              ]
-            },
-            {
-              "title": "clicks exist in distributed 50x50 rectangles, after 1.5 seconds: screenshot review required",
-              "fullTitle": "generic container - click ad exit clicks exist in distributed 50x50 rectangles, after 1.5 seconds: screenshot review required",
-              "timedOut": false,
-              "duration": 21802,
-              "state": "passed",
-              "speed": "slow",
-              "pass": true,
-              "fail": false,
-              "pending": false,
-              "context": "\"./images/clickIssueReport/1500_25_25.png\"",
-              "code": "/*___nice-to-have,screenshot-review___*/\nconst adSize = {\n  width: variables.getVal('width'),\n  height: variables.getVal('height')\n};\nconst exitIssueReport = [];\nconst clickIssueReportPath = `${variables.getVal('reportPath')}images/clickIssueReport/`;\nconst screenshotTempPath = `${clickIssueReportPath}temp/`;\n// const gridReport = [];\nconst exitReport = {\n  zero: 0,\n  one: 0,\n  multiple: 0\n};\nconst _this = this;\n// rule out the edge part of the ad since it is less likely to be clicked\nconst colAmt = ~~((adSize.width - rectSize.width) / rectSize.width);\nconst rowAmt = ~~((adSize.height - rectSize.height) / rectSize.height);\n// let startTime = 0;\nlet lastWinowAmt = 1;\nlet lastValidPosition = {\n  x: rectSize.width * 0.5,\n  y: rectSize.height * 0.5\n};\nfunction gridClickAction({\n  startColValue,\n  startRowValue,\n  startPos,\n  firstMove = {\n    x: 0,\n    y: 0\n  }\n}) {\n  let failedColValue = 0;\n  let failedRowValue = 0;\n  let stopRunning = false;\n  return new Promise((resolve, reject) => {\n    let { x, y } = startPos;\n    client.url(variables.getVal('iframePath')).execute(\n      function(adUrl, width, height) {\n        var iframe = document.createElement('iframe');\n        iframe.setAttribute('width', width);\n        iframe.setAttribute('height', height);\n        iframe.setAttribute('src', adUrl);\n        iframe.setAttribute('frameborder', 0);\n        iframe.style.position = 'absolute';\n        iframe.style.top = '0px';\n        iframe.style.left = '0px';\n        document.body.appendChild(iframe);\n      },\n      [variables.getVal('adUrlBackup'), variables.getVal('width'), variables.getVal('height')],\n      () => {\n        client.pause(pauseTime).moveTo(null, firstMove.x, firstMove.y, () => {\n          for (let i = startColValue; i < colAmt + 1; i++) {\n            for (let k = 0; k < rowAmt + 1; k++) {\n              const lastItem = i === colAmt && k === rowAmt;\n              const offset = getOffset({\n                i,\n                k,\n                rectSize,\n                rowAmt\n              });\n              const { offsetX, offsetY } = offset;\n              if (!(i === startColValue && k < startRowValue)) {\n                client.moveTo(null, offsetX, offsetY, () => {\n                  x += offsetX;\n                  y += offsetY;\n                  if (stopRunning) {\n                    if (lastItem) {\n                      // set value to the last failed index\n                      const resetX = lastValidPosition.x - x;\n                      const resetY = lastValidPosition.y - y;\n                      x += resetX;\n                      y += resetY;\n                      client.moveTo(null, resetX, resetY, () => {\n                        resolve({\n                          col: failedColValue,\n                          row: failedRowValue\n                        });\n                      });\n                    }\n                    return;\n                  }\n                  const screenshotName = `${screenshotTempPath}${i}${k}.png`;\n                  client.saveScreenshot(screenshotName);\n                  client.mouseButtonClick(() => {\n                    client.windowHandles(winResult => {\n                      const exitCount = winResult.value.length - lastWinowAmt;\n                      const x = rectSize.width * 0.5 + rectSize.width * i;\n                      const y = rectSize.height * 0.5 + rectSize.height * k;\n                      // gridReport.push({\n                      //   x,\n                      //   y,\n                      //   exitCount,\n                      //   timeElapsed: startTime === 0 ? 0 : Date.now() - startTime\n                      // });\n                      // startTime = Date.now();\n                      if (exitCount === 1) {\n                        exitReport.one += 1;\n                      } else {\n                        exitIssueReport.push({\n                          screenshot: screenshotName,\n                          point: {\n                            x,\n                            y\n                          },\n                          exitCount\n                        });\n                        if (exitCount === 0) {\n                          exitReport.zero += 1;\n                        } else {\n                          exitReport.multiple += 1;\n                        }\n                        failedColValue = i;\n                        failedRowValue = k;\n                        lastValidPosition = {\n                          x,\n                          y\n                        };\n                        stopRunning = true;\n                      }\n                      lastWinowAmt = winResult.value.length;\n                      if (lastItem) {\n                        resolve();\n                      }\n                    });\n                  });\n                });\n              }\n            }\n          }\n        });\n      }\n    );\n  });\n}\nfunction done() {\n  const perc = exitReport.one / (colAmt * rowAmt);\n  client.assert.ok(perc > 0);\n  client.assert.equal(exitReport.multiple, 0);\n  exitIssueReport.forEach(item => {\n    const imgName = createClickIssueGraphic({\n      ...item,\n      rect: rectSize,\n      dir: clickIssueReportPath,\n      pauseTime\n    });\n    addContext(_this, `./images/clickIssueReport/${imgName}`);\n  });\n  rimraf(screenshotTempPath, err => {\n    if (err) {\n      console.log(err);\n    }\n  });\n}\nfunction nextClickAction(startColValue, startRowValue, startPos = null, firstMove) {\n  gridClickAction({\n    startColValue,\n    startRowValue,\n    startPos,\n    firstMove\n  })\n    .then(obj => {\n      if (obj) {\n        const { col, row } = obj;\n        let nextCol = col;\n        let nextRow = row + 1;\n        if (nextRow > rowAmt + 1) {\n          nextRow = 0;\n          nextCol += 1;\n        }\n        // keep going\n        nextClickAction(nextCol, nextRow, lastValidPosition, {\n          x: 0,\n          y: 0\n        });\n      } else {\n        done();\n      }\n    })\n    .catch(err => {\n      throw err;\n    });\n}\n// kick off\nnextClickAction(0, 0, lastValidPosition, lastValidPosition);",
-              "err": {},
-              "isRoot": false,
-              "uuid": "efbd9194-53cf-4975-b76b-bb2f21922731",
-              "isHook": false,
-              "skipped": false,
-              "labels": [
-                "nice-to-have",
-                "screenshot-review"
-              ]
-            },
-            {
-              "title": "clicks exist in distributed 50x50 rectangles, after 5 seconds: screenshot review required",
-              "fullTitle": "generic container - click ad exit clicks exist in distributed 50x50 rectangles, after 5 seconds: screenshot review required",
-              "timedOut": false,
-              "duration": 27785,
-              "state": "passed",
-              "speed": "slow",
-              "pass": true,
-              "fail": false,
-              "pending": false,
-              "context": "\"./images/clickIssueReport/5000_25_25.png\"",
-              "code": "/*___nice-to-have,screenshot-review___*/\nconst adSize = {\n  width: variables.getVal('width'),\n  height: variables.getVal('height')\n};\nconst exitIssueReport = [];\nconst clickIssueReportPath = `${variables.getVal('reportPath')}images/clickIssueReport/`;\nconst screenshotTempPath = `${clickIssueReportPath}temp/`;\n// const gridReport = [];\nconst exitReport = {\n  zero: 0,\n  one: 0,\n  multiple: 0\n};\nconst _this = this;\n// rule out the edge part of the ad since it is less likely to be clicked\nconst colAmt = ~~((adSize.width - rectSize.width) / rectSize.width);\nconst rowAmt = ~~((adSize.height - rectSize.height) / rectSize.height);\n// let startTime = 0;\nlet lastWinowAmt = 1;\nlet lastValidPosition = {\n  x: rectSize.width * 0.5,\n  y: rectSize.height * 0.5\n};\nfunction gridClickAction({\n  startColValue,\n  startRowValue,\n  startPos,\n  firstMove = {\n    x: 0,\n    y: 0\n  }\n}) {\n  let failedColValue = 0;\n  let failedRowValue = 0;\n  let stopRunning = false;\n  return new Promise((resolve, reject) => {\n    let { x, y } = startPos;\n    client.url(variables.getVal('iframePath')).execute(\n      function(adUrl, width, height) {\n        var iframe = document.createElement('iframe');\n        iframe.setAttribute('width', width);\n        iframe.setAttribute('height', height);\n        iframe.setAttribute('src', adUrl);\n        iframe.setAttribute('frameborder', 0);\n        iframe.style.position = 'absolute';\n        iframe.style.top = '0px';\n        iframe.style.left = '0px';\n        document.body.appendChild(iframe);\n      },\n      [variables.getVal('adUrlBackup'), variables.getVal('width'), variables.getVal('height')],\n      () => {\n        client.pause(pauseTime).moveTo(null, firstMove.x, firstMove.y, () => {\n          for (let i = startColValue; i < colAmt + 1; i++) {\n            for (let k = 0; k < rowAmt + 1; k++) {\n              const lastItem = i === colAmt && k === rowAmt;\n              const offset = getOffset({\n                i,\n                k,\n                rectSize,\n                rowAmt\n              });\n              const { offsetX, offsetY } = offset;\n              if (!(i === startColValue && k < startRowValue)) {\n                client.moveTo(null, offsetX, offsetY, () => {\n                  x += offsetX;\n                  y += offsetY;\n                  if (stopRunning) {\n                    if (lastItem) {\n                      // set value to the last failed index\n                      const resetX = lastValidPosition.x - x;\n                      const resetY = lastValidPosition.y - y;\n                      x += resetX;\n                      y += resetY;\n                      client.moveTo(null, resetX, resetY, () => {\n                        resolve({\n                          col: failedColValue,\n                          row: failedRowValue\n                        });\n                      });\n                    }\n                    return;\n                  }\n                  const screenshotName = `${screenshotTempPath}${i}${k}.png`;\n                  client.saveScreenshot(screenshotName);\n                  client.mouseButtonClick(() => {\n                    client.windowHandles(winResult => {\n                      const exitCount = winResult.value.length - lastWinowAmt;\n                      const x = rectSize.width * 0.5 + rectSize.width * i;\n                      const y = rectSize.height * 0.5 + rectSize.height * k;\n                      // gridReport.push({\n                      //   x,\n                      //   y,\n                      //   exitCount,\n                      //   timeElapsed: startTime === 0 ? 0 : Date.now() - startTime\n                      // });\n                      // startTime = Date.now();\n                      if (exitCount === 1) {\n                        exitReport.one += 1;\n                      } else {\n                        exitIssueReport.push({\n                          screenshot: screenshotName,\n                          point: {\n                            x,\n                            y\n                          },\n                          exitCount\n                        });\n                        if (exitCount === 0) {\n                          exitReport.zero += 1;\n                        } else {\n                          exitReport.multiple += 1;\n                        }\n                        failedColValue = i;\n                        failedRowValue = k;\n                        lastValidPosition = {\n                          x,\n                          y\n                        };\n                        stopRunning = true;\n                      }\n                      lastWinowAmt = winResult.value.length;\n                      if (lastItem) {\n                        resolve();\n                      }\n                    });\n                  });\n                });\n              }\n            }\n          }\n        });\n      }\n    );\n  });\n}\nfunction done() {\n  const perc = exitReport.one / (colAmt * rowAmt);\n  client.assert.ok(perc > 0);\n  client.assert.equal(exitReport.multiple, 0);\n  exitIssueReport.forEach(item => {\n    const imgName = createClickIssueGraphic({\n      ...item,\n      rect: rectSize,\n      dir: clickIssueReportPath,\n      pauseTime\n    });\n    addContext(_this, `./images/clickIssueReport/${imgName}`);\n  });\n  rimraf(screenshotTempPath, err => {\n    if (err) {\n      console.log(err);\n    }\n  });\n}\nfunction nextClickAction(startColValue, startRowValue, startPos = null, firstMove) {\n  gridClickAction({\n    startColValue,\n    startRowValue,\n    startPos,\n    firstMove\n  })\n    .then(obj => {\n      if (obj) {\n        const { col, row } = obj;\n        let nextCol = col;\n        let nextRow = row + 1;\n        if (nextRow > rowAmt + 1) {\n          nextRow = 0;\n          nextCol += 1;\n        }\n        // keep going\n        nextClickAction(nextCol, nextRow, lastValidPosition, {\n          x: 0,\n          y: 0\n        });\n      } else {\n        done();\n      }\n    })\n    .catch(err => {\n      throw err;\n    });\n}\n// kick off\nnextClickAction(0, 0, lastValidPosition, lastValidPosition);",
-              "err": {},
-              "isRoot": false,
-              "uuid": "852615de-cad7-4ad0-8c49-ee0e94d7dd0a",
-              "isHook": false,
-              "skipped": false,
-              "labels": [
-                "nice-to-have",
-                "screenshot-review"
-              ]
-            }
-          ],
-          "suites": [],
-          "passes": [
-            "2989c1e6-6679-45a1-9934-1f0239970d6a",
-            "efbd9194-53cf-4975-b76b-bb2f21922731",
-            "852615de-cad7-4ad0-8c49-ee0e94d7dd0a"
-          ],
-          "failures": [],
-          "pending": [],
-          "skipped": [],
-          "duration": 49592,
-          "root": false,
-          "rootEmpty": false,
-          "_timeout": 10000
-        }],
+        "suites": [
+          {
+            "uuid": "376806c3-c368-40de-89ea-9a7d05543607",
+            "title": "ad exit",
+            "fullFile":
+              "/Users/nico.hsieh/Documents/Development/netflix-web-components/da-testing-framework/tests/active/containers/generic-source/04.click.test.js",
+            "file": "/tests/active/containers/generic-source/04.click.test.js",
+            "beforeHooks": [],
+            "afterHooks": [],
+            "tests": [
+              {
+                "title": "only has one window open before ad click",
+                "fullTitle":
+                  "generic container - click ad exit only has one window open before ad click",
+                "timedOut": false,
+                "duration": 5,
+                "state": "passed",
+                "speed": "fast",
+                "pass": true,
+                "fail": false,
+                "pending": false,
+                "code":
+                  "client => {\n      /*___required___*/\n      client.windowHandles(winResult => {\n        client.assert.equal(winResult.value.length, 1);\n      });",
+                "err": {},
+                "isRoot": false,
+                "uuid": "2989c1e6-6679-45a1-9934-1f0239970d6a",
+                "isHook": false,
+                "skipped": false,
+                "labels": ["required"]
+              },
+              {
+                "title":
+                  "clicks exist in distributed 50x50 rectangles, after 1.5 seconds: screenshot review required",
+                "fullTitle":
+                  "generic container - click ad exit clicks exist in distributed 50x50 rectangles, after 1.5 seconds: screenshot review required",
+                "timedOut": false,
+                "duration": 21802,
+                "state": "passed",
+                "speed": "slow",
+                "pass": true,
+                "fail": false,
+                "pending": false,
+                "context": "\"./images/placeholder.jpg\"",
+                "code":
+                  "/*___nice-to-have,screenshot-review___*/\nconst adSize = {\n  width: variables.getVal('width'),\n  height: variables.getVal('height')\n};\nconst exitIssueReport = [];\nconst clickIssueReportPath = `${variables.getVal('reportPath')}images/clickIssueReport/`;\nconst screenshotTempPath = `${clickIssueReportPath}temp/`;\n// const gridReport = [];\nconst exitReport = {\n  zero: 0,\n  one: 0,\n  multiple: 0\n};\nconst _this = this;\n// rule out the edge part of the ad since it is less likely to be clicked\nconst colAmt = ~~((adSize.width - rectSize.width) / rectSize.width);\nconst rowAmt = ~~((adSize.height - rectSize.height) / rectSize.height);\n// let startTime = 0;\nlet lastWinowAmt = 1;\nlet lastValidPosition = {\n  x: rectSize.width * 0.5,\n  y: rectSize.height * 0.5\n};\nfunction gridClickAction({\n  startColValue,\n  startRowValue,\n  startPos,\n  firstMove = {\n    x: 0,\n    y: 0\n  }\n}) {\n  let failedColValue = 0;\n  let failedRowValue = 0;\n  let stopRunning = false;\n  return new Promise((resolve, reject) => {\n    let { x, y } = startPos;\n    client.url(variables.getVal('iframePath')).execute(\n      function(adUrl, width, height) {\n        var iframe = document.createElement('iframe');\n        iframe.setAttribute('width', width);\n        iframe.setAttribute('height', height);\n        iframe.setAttribute('src', adUrl);\n        iframe.setAttribute('frameborder', 0);\n        iframe.style.position = 'absolute';\n        iframe.style.top = '0px';\n        iframe.style.left = '0px';\n        document.body.appendChild(iframe);\n      },\n      [variables.getVal('adUrlBackup'), variables.getVal('width'), variables.getVal('height')],\n      () => {\n        client.pause(pauseTime).moveTo(null, firstMove.x, firstMove.y, () => {\n          for (let i = startColValue; i < colAmt + 1; i++) {\n            for (let k = 0; k < rowAmt + 1; k++) {\n              const lastItem = i === colAmt && k === rowAmt;\n              const offset = getOffset({\n                i,\n                k,\n                rectSize,\n                rowAmt\n              });\n              const { offsetX, offsetY } = offset;\n              if (!(i === startColValue && k < startRowValue)) {\n                client.moveTo(null, offsetX, offsetY, () => {\n                  x += offsetX;\n                  y += offsetY;\n                  if (stopRunning) {\n                    if (lastItem) {\n                      // set value to the last failed index\n                      const resetX = lastValidPosition.x - x;\n                      const resetY = lastValidPosition.y - y;\n                      x += resetX;\n                      y += resetY;\n                      client.moveTo(null, resetX, resetY, () => {\n                        resolve({\n                          col: failedColValue,\n                          row: failedRowValue\n                        });\n                      });\n                    }\n                    return;\n                  }\n                  const screenshotName = `${screenshotTempPath}${i}${k}.png`;\n                  client.saveScreenshot(screenshotName);\n                  client.mouseButtonClick(() => {\n                    client.windowHandles(winResult => {\n                      const exitCount = winResult.value.length - lastWinowAmt;\n                      const x = rectSize.width * 0.5 + rectSize.width * i;\n                      const y = rectSize.height * 0.5 + rectSize.height * k;\n                      // gridReport.push({\n                      //   x,\n                      //   y,\n                      //   exitCount,\n                      //   timeElapsed: startTime === 0 ? 0 : Date.now() - startTime\n                      // });\n                      // startTime = Date.now();\n                      if (exitCount === 1) {\n                        exitReport.one += 1;\n                      } else {\n                        exitIssueReport.push({\n                          screenshot: screenshotName,\n                          point: {\n                            x,\n                            y\n                          },\n                          exitCount\n                        });\n                        if (exitCount === 0) {\n                          exitReport.zero += 1;\n                        } else {\n                          exitReport.multiple += 1;\n                        }\n                        failedColValue = i;\n                        failedRowValue = k;\n                        lastValidPosition = {\n                          x,\n                          y\n                        };\n                        stopRunning = true;\n                      }\n                      lastWinowAmt = winResult.value.length;\n                      if (lastItem) {\n                        resolve();\n                      }\n                    });\n                  });\n                });\n              }\n            }\n          }\n        });\n      }\n    );\n  });\n}\nfunction done() {\n  const perc = exitReport.one / (colAmt * rowAmt);\n  client.assert.ok(perc > 0);\n  client.assert.equal(exitReport.multiple, 0);\n  exitIssueReport.forEach(item => {\n    const imgName = createClickIssueGraphic({\n      ...item,\n      rect: rectSize,\n      dir: clickIssueReportPath,\n      pauseTime\n    });\n    addContext(_this, `./images/clickIssueReport/${imgName}`);\n  });\n  rimraf(screenshotTempPath, err => {\n    if (err) {\n      console.log(err);\n    }\n  });\n}\nfunction nextClickAction(startColValue, startRowValue, startPos = null, firstMove) {\n  gridClickAction({\n    startColValue,\n    startRowValue,\n    startPos,\n    firstMove\n  })\n    .then(obj => {\n      if (obj) {\n        const { col, row } = obj;\n        let nextCol = col;\n        let nextRow = row + 1;\n        if (nextRow > rowAmt + 1) {\n          nextRow = 0;\n          nextCol += 1;\n        }\n        // keep going\n        nextClickAction(nextCol, nextRow, lastValidPosition, {\n          x: 0,\n          y: 0\n        });\n      } else {\n        done();\n      }\n    })\n    .catch(err => {\n      throw err;\n    });\n}\n// kick off\nnextClickAction(0, 0, lastValidPosition, lastValidPosition);",
+                "err": {},
+                "isRoot": false,
+                "uuid": "efbd9194-53cf-4975-b76b-bb2f21922731",
+                "isHook": false,
+                "skipped": false,
+                "labels": ["nice-to-have", "screenshot-review"]
+              },
+              {
+                "title":
+                  "clicks exist in distributed 50x50 rectangles, after 5 seconds: screenshot review required",
+                "fullTitle":
+                  "generic container - click ad exit clicks exist in distributed 50x50 rectangles, after 5 seconds: screenshot review required",
+                "timedOut": false,
+                "duration": 27785,
+                "state": "passed",
+                "speed": "slow",
+                "pass": true,
+                "fail": false,
+                "pending": false,
+                "context": "\"./images/placeholder.jpg\"",
+                "code":
+                  "/*___nice-to-have,screenshot-review___*/\nconst adSize = {\n  width: variables.getVal('width'),\n  height: variables.getVal('height')\n};\nconst exitIssueReport = [];\nconst clickIssueReportPath = `${variables.getVal('reportPath')}images/clickIssueReport/`;\nconst screenshotTempPath = `${clickIssueReportPath}temp/`;\n// const gridReport = [];\nconst exitReport = {\n  zero: 0,\n  one: 0,\n  multiple: 0\n};\nconst _this = this;\n// rule out the edge part of the ad since it is less likely to be clicked\nconst colAmt = ~~((adSize.width - rectSize.width) / rectSize.width);\nconst rowAmt = ~~((adSize.height - rectSize.height) / rectSize.height);\n// let startTime = 0;\nlet lastWinowAmt = 1;\nlet lastValidPosition = {\n  x: rectSize.width * 0.5,\n  y: rectSize.height * 0.5\n};\nfunction gridClickAction({\n  startColValue,\n  startRowValue,\n  startPos,\n  firstMove = {\n    x: 0,\n    y: 0\n  }\n}) {\n  let failedColValue = 0;\n  let failedRowValue = 0;\n  let stopRunning = false;\n  return new Promise((resolve, reject) => {\n    let { x, y } = startPos;\n    client.url(variables.getVal('iframePath')).execute(\n      function(adUrl, width, height) {\n        var iframe = document.createElement('iframe');\n        iframe.setAttribute('width', width);\n        iframe.setAttribute('height', height);\n        iframe.setAttribute('src', adUrl);\n        iframe.setAttribute('frameborder', 0);\n        iframe.style.position = 'absolute';\n        iframe.style.top = '0px';\n        iframe.style.left = '0px';\n        document.body.appendChild(iframe);\n      },\n      [variables.getVal('adUrlBackup'), variables.getVal('width'), variables.getVal('height')],\n      () => {\n        client.pause(pauseTime).moveTo(null, firstMove.x, firstMove.y, () => {\n          for (let i = startColValue; i < colAmt + 1; i++) {\n            for (let k = 0; k < rowAmt + 1; k++) {\n              const lastItem = i === colAmt && k === rowAmt;\n              const offset = getOffset({\n                i,\n                k,\n                rectSize,\n                rowAmt\n              });\n              const { offsetX, offsetY } = offset;\n              if (!(i === startColValue && k < startRowValue)) {\n                client.moveTo(null, offsetX, offsetY, () => {\n                  x += offsetX;\n                  y += offsetY;\n                  if (stopRunning) {\n                    if (lastItem) {\n                      // set value to the last failed index\n                      const resetX = lastValidPosition.x - x;\n                      const resetY = lastValidPosition.y - y;\n                      x += resetX;\n                      y += resetY;\n                      client.moveTo(null, resetX, resetY, () => {\n                        resolve({\n                          col: failedColValue,\n                          row: failedRowValue\n                        });\n                      });\n                    }\n                    return;\n                  }\n                  const screenshotName = `${screenshotTempPath}${i}${k}.png`;\n                  client.saveScreenshot(screenshotName);\n                  client.mouseButtonClick(() => {\n                    client.windowHandles(winResult => {\n                      const exitCount = winResult.value.length - lastWinowAmt;\n                      const x = rectSize.width * 0.5 + rectSize.width * i;\n                      const y = rectSize.height * 0.5 + rectSize.height * k;\n                      // gridReport.push({\n                      //   x,\n                      //   y,\n                      //   exitCount,\n                      //   timeElapsed: startTime === 0 ? 0 : Date.now() - startTime\n                      // });\n                      // startTime = Date.now();\n                      if (exitCount === 1) {\n                        exitReport.one += 1;\n                      } else {\n                        exitIssueReport.push({\n                          screenshot: screenshotName,\n                          point: {\n                            x,\n                            y\n                          },\n                          exitCount\n                        });\n                        if (exitCount === 0) {\n                          exitReport.zero += 1;\n                        } else {\n                          exitReport.multiple += 1;\n                        }\n                        failedColValue = i;\n                        failedRowValue = k;\n                        lastValidPosition = {\n                          x,\n                          y\n                        };\n                        stopRunning = true;\n                      }\n                      lastWinowAmt = winResult.value.length;\n                      if (lastItem) {\n                        resolve();\n                      }\n                    });\n                  });\n                });\n              }\n            }\n          }\n        });\n      }\n    );\n  });\n}\nfunction done() {\n  const perc = exitReport.one / (colAmt * rowAmt);\n  client.assert.ok(perc > 0);\n  client.assert.equal(exitReport.multiple, 0);\n  exitIssueReport.forEach(item => {\n    const imgName = createClickIssueGraphic({\n      ...item,\n      rect: rectSize,\n      dir: clickIssueReportPath,\n      pauseTime\n    });\n    addContext(_this, `./images/clickIssueReport/${imgName}`);\n  });\n  rimraf(screenshotTempPath, err => {\n    if (err) {\n      console.log(err);\n    }\n  });\n}\nfunction nextClickAction(startColValue, startRowValue, startPos = null, firstMove) {\n  gridClickAction({\n    startColValue,\n    startRowValue,\n    startPos,\n    firstMove\n  })\n    .then(obj => {\n      if (obj) {\n        const { col, row } = obj;\n        let nextCol = col;\n        let nextRow = row + 1;\n        if (nextRow > rowAmt + 1) {\n          nextRow = 0;\n          nextCol += 1;\n        }\n        // keep going\n        nextClickAction(nextCol, nextRow, lastValidPosition, {\n          x: 0,\n          y: 0\n        });\n      } else {\n        done();\n      }\n    })\n    .catch(err => {\n      throw err;\n    });\n}\n// kick off\nnextClickAction(0, 0, lastValidPosition, lastValidPosition);",
+                "err": {},
+                "isRoot": false,
+                "uuid": "852615de-cad7-4ad0-8c49-ee0e94d7dd0a",
+                "isHook": false,
+                "skipped": false,
+                "labels": ["nice-to-have", "screenshot-review"]
+              }
+            ],
+            "suites": [],
+            "passes": [
+              "2989c1e6-6679-45a1-9934-1f0239970d6a",
+              "efbd9194-53cf-4975-b76b-bb2f21922731",
+              "852615de-cad7-4ad0-8c49-ee0e94d7dd0a"
+            ],
+            "failures": [],
+            "pending": [],
+            "skipped": [],
+            "duration": 49592,
+            "root": false,
+            "rootEmpty": false,
+            "_timeout": 10000
+          }
+        ],
         "passes": [],
         "failures": [],
         "pending": [],
