@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import superagent from 'superagent';
 import { Duration, Icon } from 'components';
 import { CodeSnippet, TestContext } from 'components/test';
 import classNames from 'classnames/bind';
@@ -13,9 +14,9 @@ class Test extends PureComponent {
     super(props);
 
     const { test } = props;
-    const revieweNeeded = test.fail && !test.reviewed && !test.labels.includes('required')
+    const revieweNeeded = test.fail && !test.reviewed && !test.labels.includes('required');
     this.state = {
-      expanded: false,
+      expanded: true,
       revieweNeeded
     };
   }
@@ -29,11 +30,6 @@ class Test extends PureComponent {
     enableCode: false
   };
 
-  state = {
-    expanded: false,
-    revieweNeeded: false
-  };
-
   toggleExpandedState = () => {
     if (this.state.revieweNeeded) {
       return;
@@ -45,7 +41,19 @@ class Test extends PureComponent {
   }
 
   reviewApproveClick = () => {
+    // TODO: send uuid to review approval API end point
     this.setState({ revieweNeeded: false });
+    const { uuid, title } = this.props.test;
+    const host = window.location.origin;
+    const containerId = window.location.pathname.split(',')[0];
+    superagent
+      .post(`${host}/ci/test/resolve/${containerId}/${uuid}`)
+      .then(res => {
+        console.info(`Resolve Endpoint for "${title}": ${res.status}`);
+      })
+      .catch(err => {
+        console.error(`Resolve Endpoint for "${title}" ${err}`);
+      })
   }
 
   render() {
