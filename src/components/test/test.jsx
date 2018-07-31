@@ -128,7 +128,7 @@ class Test extends PureComponent {
     });
 
     return (
-      <section id={ uuid } className={ cxname }>
+      <section data-id={ uuid } className={ cxname }>
         <header className={ cx('header') } onClick={ this.toggleExpandedState }>
           {testIcon()}
           <h4 className={ cx('title') } title={ title }>

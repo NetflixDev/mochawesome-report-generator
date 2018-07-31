@@ -15,8 +15,31 @@ class ReportBody extends React.Component {
     this.props.reportStore.updateFilteredSuites(timeout);
   }
 
+  updatePageScrollPos = () => {
+    const { hash } = document.location;
+    if (hash) {
+      const selector = `[data-id='${hash.replace('#', '')}']`;
+      const node = document.querySelector(selector);
+      if (!node) {
+        return;
+      }
+
+      const top = node.getBoundingClientRect().y - 70;
+      document.documentElement.scrollTop = top;
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.props.reportStore.filteredSuites.length > 0 && !this.scrolled) {
+      this.scrolled = true;
+      this.updatePageScrollPos();
+    }
+  }
+
   componentDidMount() {
     this.updateSuites();
+    // this.updatePageScrollPos();
+    // console.log(this.props.reportStore.filteredSuites)
     this.disposer = reaction(
       () => {
         const {

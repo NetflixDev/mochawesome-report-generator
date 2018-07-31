@@ -81,7 +81,7 @@ class Suite extends Component {
     const hideHeader = root && !hasTests && (hasBeforeHooks || hasAfterHooks);
 
     return (
-      <section className={ cxname } id={ uuid }>
+      <section className={ cxname } data-id={ uuid }>
         { !hideHeader &&
           <header className={ cx('header') }>
             { title !== '' && <h3 className={ cx('title') }>{ title }</h3> }
