@@ -13,8 +13,8 @@ class Test extends PureComponent {
   constructor(props) {
     super(props);
 
-    const { test, reviewed } = props;
-    const revieweNeeded = test.fail && !reviewed && !test.labels.includes('required');
+    const { test, reviewed, label } = props;
+    const revieweNeeded = test.fail && !reviewed && label !== 'required';
     this.state = {
       expanded: true,
       revieweNeeded
@@ -24,7 +24,8 @@ class Test extends PureComponent {
   static propTypes = {
     test: PropTypes.object,
     enableCode: PropTypes.bool,
-    reviewed: PropTypes.bool
+    reviewed: PropTypes.bool,
+    label: PropTypes.string
   };
 
   static defaultProps = {
@@ -42,7 +43,6 @@ class Test extends PureComponent {
   }
 
   reviewApproveClick = () => {
-    // TODO: send uuid to review approval API end point
     this.setState({ revieweNeeded: false });
     const { uuid, title } = this.props.test;
     const host = window.location.origin;
@@ -58,7 +58,7 @@ class Test extends PureComponent {
   }
 
   render() {
-    const { test, enableCode } = this.props;
+    const { test, enableCode, label } = this.props;
     const { revieweNeeded } = this.state;
     const {
       uuid,
@@ -72,8 +72,7 @@ class Test extends PureComponent {
       isHook,
       err,
       code,
-      context,
-      labels
+      context
     } = test;
 
     const testIcon = () => {
@@ -84,7 +83,7 @@ class Test extends PureComponent {
         iconClassName = 'pass';
       }
       if (fail) {
-        if (labels.includes('required')) {
+        if (label === 'required') {
           iconName = 'close';
           iconClassName = 'fail';
         } else if (revieweNeeded) {

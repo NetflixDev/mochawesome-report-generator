@@ -85,8 +85,7 @@
             "isRoot": false,
             "uuid": "de36bd3f-787a-42ff-9c20-16700cadb6d2",
             "isHook": false,
-            "skipped": false,
-            "labels": ["required"]
+            "skipped": false
           }
         ],
         "suites": [
@@ -115,8 +114,7 @@
                 "isRoot": false,
                 "uuid": "3038d0b5-92cb-42bb-a661-0c99e39fe4f1",
                 "isHook": false,
-                "skipped": false,
-                "labels": ["required"]
+                "skipped": false
               },
               {
                 "title": "doesn't have duplicate ids",
@@ -134,8 +132,7 @@
                 "isRoot": false,
                 "uuid": "de50614f-df8f-4ac7-bbcf-47a9d2c8813a",
                 "isHook": false,
-                "skipped": false,
-                "labels": ["required"]
+                "skipped": false
               },
               {
                 "title": "has an agencyName field",
@@ -153,8 +150,7 @@
                 "isRoot": false,
                 "uuid": "ff5eea6e-5ffd-4409-be73-c35b83608b40",
                 "isHook": false,
-                "skipped": false,
-                "labels": ["nice-to-have"]
+                "skipped": false
               },
               {
                 "title": "has a width field with a number value",
@@ -173,8 +169,7 @@
                 "isRoot": false,
                 "uuid": "9c684b9a-8dfd-49ec-a62b-8c574434af99",
                 "isHook": false,
-                "skipped": false,
-                "labels": ["required"]
+                "skipped": false
               },
               {
                 "title": "has a height field with a number value",
@@ -193,8 +188,7 @@
                 "isRoot": false,
                 "uuid": "1dd7c0da-f90f-4df7-a901-15167f11c01c",
                 "isHook": false,
-                "skipped": false,
-                "labels": ["required"]
+                "skipped": false
               }
             ],
             "suites": [
@@ -224,8 +218,7 @@
                     "isRoot": false,
                     "uuid": "d826a0cf-9883-4828-b8d0-eb0f1a6d8ba0",
                     "isHook": false,
-                    "skipped": false,
-                    "labels": ["required"]
+                    "skipped": false
                   },
                   {
                     "title": "has Exit_URL_Android id",
@@ -244,8 +237,7 @@
                     "isRoot": false,
                     "uuid": "8e96196f-9df8-467e-80fb-caff5ac92453",
                     "isHook": false,
-                    "skipped": false,
-                    "labels": ["required"]
+                    "skipped": false
                   },
                   {
                     "title": "has Exit_URL_Desktop id",
@@ -264,8 +256,7 @@
                     "isRoot": false,
                     "uuid": "034e0a8b-810f-46ea-a992-36b0d263c53e",
                     "isHook": false,
-                    "skipped": false,
-                    "labels": ["required"]
+                    "skipped": false
                   }
                 ],
                 "suites": [],
@@ -323,8 +314,7 @@
                 "isRoot": false,
                 "uuid": "b2b1337a-ab02-4818-8cac-43498262fd8f",
                 "isHook": false,
-                "skipped": false,
-                "labels": ["required"]
+                "skipped": false
               },
               {
                 "title": "doesn't have duplicate keys",
@@ -342,8 +332,7 @@
                 "isRoot": false,
                 "uuid": "597ec3d5-97b4-4399-b70a-4a35103bdee9",
                 "isHook": false,
-                "skipped": false,
-                "labels": ["required"]
+                "skipped": false
               }
             ],
             "suites": [
@@ -373,8 +362,7 @@
                     "isRoot": false,
                     "uuid": "022570d1-0f27-4a3e-aedc-d27c4fb7f4b9",
                     "isHook": false,
-                    "skipped": false,
-                    "labels": ["required"]
+                    "skipped": false
                   },
                   {
                     "title": "has an url.Exit_URL_Android field",
@@ -393,8 +381,7 @@
                     "isRoot": false,
                     "uuid": "0e5f593f-24b3-430a-9e0d-1c916bc57f82",
                     "isHook": false,
-                    "skipped": false,
-                    "labels": ["required"]
+                    "skipped": false
                   },
                   {
                     "title": "has an url.Exit_URL_Desktop field",
@@ -413,8 +400,7 @@
                     "isRoot": false,
                     "uuid": "82c10ab5-e32f-4bed-87b0-ff73270e4a7a",
                     "isHook": false,
-                    "skipped": false,
-                    "labels": ["required"]
+                    "skipped": false
                   }
                 ],
                 "suites": [],
@@ -523,8 +509,7 @@
                 "isRoot": false,
                 "uuid": "ed03a385-d97a-48e3-8f01-6d190b7ef639",
                 "isHook": false,
-                "skipped": false,
-                "labels": ["required"]
+                "skipped": false
               },
               {
                 "title": "reports MONET_AD_VISIBLE",
@@ -543,8 +528,7 @@
                 "isRoot": false,
                 "uuid": "200ac587-a9f9-483f-9c59-580ee0a30dff",
                 "isHook": false,
-                "skipped": false,
-                "labels": ["required"]
+                "skipped": false
               },
               {
                 "title": "reports MONET_ASSETS_LOADED",
@@ -563,8 +547,7 @@
                 "isRoot": false,
                 "uuid": "a52de527-ca6b-4e8e-acd4-379eb87059c3",
                 "isHook": false,
-                "skipped": false,
-                "labels": ["required"]
+                "skipped": false
               }
             ],
             "suites": [],
@@ -660,8 +643,7 @@
                 "isRoot": false,
                 "uuid": "32f8fa35-8a8a-4d64-b120-66e0c6aba61a",
                 "isHook": false,
-                "skipped": false,
-                "labels": ["required"]
+                "skipped": false
               },
               {
                 "title": "is ready after 2 seconds",
@@ -680,8 +662,7 @@
                 "isRoot": false,
                 "uuid": "16e65e40-b182-4c80-92b0-277b38281db3",
                 "isHook": false,
-                "skipped": false,
-                "labels": ["nice-to-have"]
+                "skipped": false
               },
               {
                 "title": "has monet data",
@@ -699,8 +680,7 @@
                 "isRoot": false,
                 "uuid": "f6c37c02-4a76-41d8-84bc-06f7d9b10872",
                 "isHook": false,
-                "skipped": false,
-                "labels": ["required"]
+                "skipped": false
               }
             ],
             "suites": [],
@@ -747,8 +727,7 @@
                 "isRoot": false,
                 "uuid": "4fa9148d-dae7-4ceb-a130-42640897d6a9",
                 "isHook": false,
-                "skipped": false,
-                "labels": ["nice-to-have"]
+                "skipped": false
               }
             ],
             "suites": [],
@@ -855,8 +834,7 @@
                 "isRoot": false,
                 "uuid": "2989c1e6-6679-45a1-9934-1f0239970d6a",
                 "isHook": false,
-                "skipped": false,
-                "labels": ["required"]
+                "skipped": false
               },
               {
                 "title":
@@ -877,8 +855,7 @@
                 "isRoot": false,
                 "uuid": "efbd9194-53cf-4975-b76b-bb2f21922731",
                 "isHook": false,
-                "skipped": false,
-                "labels": ["nice-to-have", "screenshot-review"]
+                "skipped": false
               },
               {
                 "title":
@@ -899,8 +876,7 @@
                 "isRoot": false,
                 "uuid": "852615de-cad7-4ad0-8c49-ee0e94d7dd0a",
                 "isHook": false,
-                "skipped": false,
-                "labels": ["nice-to-have", "screenshot-review"]
+                "skipped": false
               }
             ],
             "suites": [],

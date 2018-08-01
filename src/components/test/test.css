@@ -77,11 +77,30 @@
     background: var(--grey50);
     border: 2px var(--amber500) dashed;
     transition: border-color .1s ease-out, background-color .1s ease-out;
+
+    &:after {
+      position: absolute;
+      top: -6f thpx;
+      left: 19px;
+      padding: 4px;
+      content: 'Approve';
+      font-family: Arial;
+      font-size: 11px;
+      color: var(--grey700);
+      background: #ffffff;
+      opacity: 0;
+      pointer-events: none;
+      transition: .1s opacity;
+    }
   }
 
   &.review:hover {
     background: var(--grey100);
     border-color: var(--green500);
+
+    &:after {
+      opacity: 1;
+    }
   }
 
   &.pending {

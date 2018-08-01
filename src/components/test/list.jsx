@@ -11,13 +11,23 @@ const TestList = ({ className, tests, beforeHooks, afterHooks, enableCode, conta
   const reviewObj = { ...failReviews, ...screenshotReviews };
   const reviewedIds = Object.keys(reviewObj).filter(key => reviewObj[key]);
 
+  const getLabel = uuid => {
+    if (Object.keys(failReviews).includes(uuid)) {
+      return 'nice-to-have';
+    } else if (Object.keys(screenshotReviews).includes(uuid)) {
+      return 'screenshot-review';
+    }
+    return 'required';
+  };
+
+  // TODO: paasing in label
   return (
     <div className={ cx(className) }>
       { !!beforeHooks && beforeHooks.map(test => (
         <Test key={ test.uuid } test={ test } enableCode={ enableCode } />))
       }
       { !!tests && tests.map(test => (
-        <Test key={ test.uuid } test={ test } enableCode={ enableCode } reviewed={ reviewedIds.includes(test.uuid) } />))
+        <Test key={ test.uuid } test={ test } enableCode={ enableCode } reviewed={ reviewedIds.includes(test.uuid) } label={ getLabel(test.uuid) } />))
       }
       { !!afterHooks && afterHooks.map(test => (
         <Test key={ test.uuid } test={ test } enableCode={ enableCode } />))
