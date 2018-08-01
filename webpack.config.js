@@ -51,7 +51,7 @@ module.exports = {
     },
     host: '0.0.0.0'
   },
-  devtool: isDev ? 'source-map' : false,
+  devtool: isDev ? 'cheap-source-map' : false,
   entry: {
     app: './src/js/mochawesome.js'
   },
