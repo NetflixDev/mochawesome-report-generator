@@ -27,8 +27,13 @@ class ReportStore {
       showPassed: config.showPassed !== undefined ? config.showPassed : true,
       showPending: config.showPending !== undefined ? config.showPending : true,
       showSkipped: config.showSkipped !== undefined ? config.showSkipped : false,
-      sideNavOpen: false
+      sideNavOpen: false,
+      containerStatus: {}
     });
+  }
+
+  @action.bound setContainerStatus(obj) {
+    this.containerStatus = obj;
   }
 
   @action.bound openSideNav() {

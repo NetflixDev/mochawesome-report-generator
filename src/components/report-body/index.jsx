@@ -2,11 +2,28 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { reaction } from 'mobx';
 import { inject, observer } from 'mobx-react';
+import superagent from 'superagent';
 import { Suite } from 'components/suite';
 import cx from 'classnames';
 
 @inject('reportStore') @observer
 class ReportBody extends React.Component {
+  constructor(props) {
+    super(props);
+
+    const { devMode, setContainerStatus } = props.reportStore;
+    const host = window.location.origin;
+    const containerId = window.location.pathname.split('/')[3];
+    const url = devMode ? './container.json' : `${host}/containers/preview/${containerId}/container.json`
+    superagent
+      .get(url)
+      .then(res => {
+        setContainerStatus(res.body.status);
+      })
+      .catch(err => {
+        console.error(err);
+      })
+  }
   static propTypes = {
     reportStore: PropTypes.object
   };

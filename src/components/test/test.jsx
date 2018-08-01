@@ -13,8 +13,8 @@ class Test extends PureComponent {
   constructor(props) {
     super(props);
 
-    const { test } = props;
-    const revieweNeeded = test.fail && !test.reviewed && !test.labels.includes('required');
+    const { test, reviewed } = props;
+    const revieweNeeded = test.fail && !reviewed && !test.labels.includes('required');
     this.state = {
       expanded: true,
       revieweNeeded
@@ -23,7 +23,8 @@ class Test extends PureComponent {
 
   static propTypes = {
     test: PropTypes.object,
-    enableCode: PropTypes.bool
+    enableCode: PropTypes.bool,
+    reviewed: PropTypes.bool
   };
 
   static defaultProps = {
@@ -45,7 +46,7 @@ class Test extends PureComponent {
     this.setState({ revieweNeeded: false });
     const { uuid, title } = this.props.test;
     const host = window.location.origin;
-    const containerId = window.location.pathname.split(',')[0];
+    const containerId = window.location.pathname.split('/')[3];
     superagent
       .post(`${host}/ci/test/resolve/${containerId}/${uuid}`)
       .then(res => {
