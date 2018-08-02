@@ -14,6 +14,7 @@
     "compile:cli": "babel ./bin/src -d bin/ && cfonts 'compile:cli",
     "compile": "npm run compile:main && npm run compile:cli && cfonts 'compile'",
     "build": "rm -rf dist/assets && NODE_ENV=production npm run webpack && cfonts 'build'",
+    "postinstall": "npm run build && npm run compile && cfonts 'postinstall'",
     "webpack": "npm run pack:external && npm run pack:inline && cfonts 'webpack'",
     "pack:external": "MARGE_ASSETS=external webpack && cfonts 'pack:ex'",
     "pack:inline": "MARGE_ASSETS=inline webpack && cfonts 'pack:inline'",
