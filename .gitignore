@@ -10,6 +10,4 @@ npm-debug.log
 coverage
 .nyc_output
 test-functional/*.html
-dist
-bin/*.js
-lib/*.js
+
