@@ -14,7 +14,7 @@ class ReportBody extends React.Component {
     const { devMode, setContainerStatus } = props.reportStore;
     const host = window.location.origin;
     const containerId = window.location.pathname.split('/')[3];
-    const url = devMode ? './container.json' : `${host}/containers/preview/${containerId}/container.json`
+    const url = devMode ? './container.json' : `${host}/containers/preview/${containerId}/status.json`
     superagent
       .get(url)
       .then(res => {
