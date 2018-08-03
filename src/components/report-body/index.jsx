@@ -11,14 +11,12 @@ class ReportBody extends React.Component {
   constructor(props) {
     super(props);
 
-    const { devMode, setContainerStatus } = props.reportStore;
-    const host = window.location.origin;
-    const containerId = window.location.pathname.split('/')[3];
-    const url = devMode ? './container.json' : `${host}/containers/preview/${containerId}/status.json`
+    const { setContainerStatus } = props.reportStore;
+    const url = './status.json';
     superagent
       .get(url)
       .then(res => {
-        setContainerStatus(res.body.status);
+        setContainerStatus(res.body);
       })
       .catch(err => {
         console.error(err);
