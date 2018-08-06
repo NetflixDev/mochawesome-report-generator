@@ -6,6 +6,8 @@ import styles from './quick-summary.css';
 
 const cx = classNames.bind(styles);
 
+// TODO: inject observer and parse failed
+
 const QuickSummary = ({ stats }) => {
   const { duration, suites, testsRegistered, passes, failures, pending, skipped } = stats;
   return (

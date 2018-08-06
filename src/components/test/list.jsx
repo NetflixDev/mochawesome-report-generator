@@ -7,6 +7,7 @@ import styles from './test.css';
 const cx = classNames.bind(styles);
 
 const TestList = ({ className, tests, beforeHooks, afterHooks, enableCode, containerStatus }) => {
+  const { type: testType } = containerStatus;
   const { failReviews, screenshotReviews } = containerStatus.summary.subtotals;
   const reviewObj = { ...failReviews, ...screenshotReviews };
   const reviewedIds = Object.keys(reviewObj).filter(key => reviewObj[key]);
@@ -24,13 +25,13 @@ const TestList = ({ className, tests, beforeHooks, afterHooks, enableCode, conta
   return (
     <div className={ cx(className) }>
       { !!beforeHooks && beforeHooks.map(test => (
-        <Test key={ test.uuid } test={ test } enableCode={ enableCode } />))
+        <Test key={ test.uuid } test={ test } enableCode={ enableCode } testType={ testType } />))
       }
       { !!tests && tests.map(test => (
-        <Test key={ test.uuid } test={ test } enableCode={ enableCode } reviewed={ reviewedIds.includes(test.uuid) } label={ getLabel(test.uuid) } />))
+        <Test key={ test.uuid } test={ test } enableCode={ enableCode } testType={ testType } reviewed={ reviewedIds.includes(test.uuid) } label={ getLabel(test.uuid) } />))
       }
       { !!afterHooks && afterHooks.map(test => (
-        <Test key={ test.uuid } test={ test } enableCode={ enableCode } />))
+        <Test key={ test.uuid } test={ test } enableCode={ enableCode } testType={ testType } />))
       }
     </div>
   );

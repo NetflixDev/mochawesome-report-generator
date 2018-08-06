@@ -25,7 +25,8 @@ class Test extends PureComponent {
     test: PropTypes.object,
     enableCode: PropTypes.bool,
     reviewed: PropTypes.bool,
-    label: PropTypes.string
+    label: PropTypes.string,
+    testType: PropTypes.string
   };
 
   static defaultProps = {
@@ -45,10 +46,11 @@ class Test extends PureComponent {
   reviewApproveClick = () => {
     this.setState({ revieweNeeded: false });
     const { uuid, title } = this.props.test;
+    const { testType } = this.props;
     const host = window.location.origin;
     const containerId = window.location.pathname.split('/')[3];
     superagent
-      .post(`${host}/ci/test/resolve/${containerId}/${uuid}`)
+      .get(`${host}/ci/test/resolve/${containerId}/${testType}/${uuid}`)
       .then(res => {
         console.info(`Resolve Endpoint for "${title}": ${res.status}`);
       })
