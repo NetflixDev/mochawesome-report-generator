@@ -42,7 +42,7 @@
     }
   }
 
-  &.reviewed {
+  &.resolved {
     & .icon {
       color: var(--ltblue700);
       background-color: var(--ltblue100);

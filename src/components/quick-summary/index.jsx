@@ -9,7 +9,7 @@ const cx = classNames.bind(styles);
 
 @inject('reportStore') @observer
 // TODO: inject observer and parse failed
-// TODO: add 'reviewed' 'review-pending'
+// TODO: add 'resolved' 'review-pending'
 
 class QuickSummary extends React.Component {
   // constructor()
@@ -19,18 +19,18 @@ class QuickSummary extends React.Component {
   };
 
   static getReviewStats(failReviews, screenshotReviews) {
-    let reviewed = 0;
+    let resolved = 0;
     let reviewRequired = 0;
     const items = { ...failReviews, ...screenshotReviews };
     Object.keys(items).forEach(key => {
       if (items[key].resolved) {
-        reviewed += 1;
+        resolved += 1;
       } else {
         reviewRequired += 1;
       }
     });
     return {
-      reviewed,
+      resolved,
       reviewRequired
     };
   }
@@ -38,15 +38,15 @@ class QuickSummary extends React.Component {
   renderDetails() {
     const { passes, failures, pending, skipped } = this.props.stats;
     const { failReviews, screenshotReviews } = this.props.reportStore.containerStatus.summary.subtotals;
-    const { reviewed, reviewRequired } = QuickSummary.getReviewStats(failReviews, screenshotReviews);
+    const { resolved, reviewRequired } = QuickSummary.getReviewStats(failReviews, screenshotReviews);
     return (
       <ul className={ cx('list') }>
         <li className={ cx('item', 'passes') } title='Passed'>
           <Icon name='check' className={ cx('icon', 'circle-icon') } />{ passes }
         </li>
-        { !!reviewed && (
-          <li className={ cx('item', 'reviewed') } title='Reviewed'>
-            <Icon name='check' className={ cx('icon', 'circle-icon') } />{ reviewed }
+        { !!resolved && (
+          <li className={ cx('item', 'resolved') } title='Resolved'>
+            <Icon name='check' className={ cx('icon', 'circle-icon') } />{ resolved }
           </li>)
         }
         { !!reviewRequired && (
