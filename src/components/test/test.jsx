@@ -90,10 +90,10 @@ class Test extends PureComponent {
           iconClassName = 'fail';
         } else if (revieweNeeded) {
           iconName = 'check';
-          iconClassName = 'review';
+          iconClassName = 'review-required';
         } else {
           iconName = 'check';
-          iconClassName = 'pass';
+          iconClassName = 'resolved';
         }
       }
       if (pending) {

@@ -72,7 +72,7 @@
     background-color: var(--red500);
   }
 
-  &.review  {
+  &.review-required  {
     color: var(--grey500);
     background: var(--grey50);
     border: 2px var(--amber500) dashed;
@@ -92,15 +92,20 @@
       pointer-events: none;
       transition: .1s opacity;
     }
+
+    &:hover {
+      background: var(--grey100);
+      border-color: var(--ltblue700);
+  
+      &:after {
+        opacity: 1;
+      }
+    }
   }
 
-  &.review:hover {
-    background: var(--grey100);
-    border-color: var(--green500);
-
-    &:after {
-      opacity: 1;
-    }
+  &.resolved {
+    color: var(--ltblue100);
+    background-color: var(--ltblue500);
   }
 
   &.pending {
