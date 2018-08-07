@@ -10,7 +10,7 @@ const TestList = ({ className, tests, beforeHooks, afterHooks, enableCode, conta
   const { type: testType } = containerStatus;
   const { failReviews, screenshotReviews } = containerStatus.summary.subtotals;
   const reviewObj = { ...failReviews, ...screenshotReviews };
-  const reviewedIds = Object.keys(reviewObj).filter(key => reviewObj[key]);
+  const reviewedIds = Object.keys(reviewObj).filter(key => reviewObj[key].resolved);
 
   const getLabel = uuid => {
     if (Object.keys(failReviews).includes(uuid)) {
@@ -21,7 +21,6 @@ const TestList = ({ className, tests, beforeHooks, afterHooks, enableCode, conta
     return 'required';
   };
 
-  // TODO: paasing in label
   return (
     <div className={ cx(className) }>
       { !!beforeHooks && beforeHooks.map(test => (

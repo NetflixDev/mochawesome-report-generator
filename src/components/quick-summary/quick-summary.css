@@ -42,6 +42,20 @@
     }
   }
 
+  &.reviewed {
+    & .icon {
+      color: var(--ltblue700);
+      background-color: var(--ltblue100);
+    }
+  }
+
+  &.review-required {
+    & .icon {
+      color: var(--amber700);
+      background-color: var(--amber200);
+    }
+  }
+
   &.pending {
     & .icon {
       color: var(--ltblue700);

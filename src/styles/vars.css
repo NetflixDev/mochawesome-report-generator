@@ -53,9 +53,11 @@
   --light-icon-inactive: rgba(255, 255, 255, 0.5);
   --dark-icon-active: var(--black54);
   --dark-icon-inactive: var(--black38);
+  --amber200: #ffe799;
   --amber300: #ffd54f;
   --amber400: #ffca28;
   --amber500: #ffc107;
+  --amber700: #e08c06;
   --yellow700: #fbc02d;
   --yellow800: #f9a825;
 
