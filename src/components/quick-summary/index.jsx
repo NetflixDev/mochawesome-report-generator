@@ -1,24 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { inject, observer } from 'mobx-react';
 import { Duration, Icon } from 'components';
 import classNames from 'classnames/bind';
 import styles from './quick-summary.css';
 
 const cx = classNames.bind(styles);
 
-@inject('reportStore') @observer
-// TODO: inject observer and parse failed
-// TODO: add 'resolved' 'review-pending'
+const QuickSummary = ({ stats, containerStatus }) => {
 
-class QuickSummary extends React.Component {
-  // constructor()
-  static propTypes = {
-    stats: PropTypes.object,
-    reportStore: PropTypes.object
-  };
+  const { duration, suites, testsRegistered } = stats;
 
-  static getReviewStats(failReviews, screenshotReviews) {
+  const getReviewStats = (failReviews, screenshotReviews) => {
     let resolved = 0;
     let reviewRequired = 0;
     const items = { ...failReviews, ...screenshotReviews };
@@ -33,12 +25,12 @@ class QuickSummary extends React.Component {
       resolved,
       reviewRequired
     };
-  }
+  };
 
-  renderDetails() {
-    const { passes, failures, pending, skipped } = this.props.stats;
-    const { failReviews, screenshotReviews } = this.props.reportStore.containerStatus.summary.subtotals;
-    const { resolved, reviewRequired } = QuickSummary.getReviewStats(failReviews, screenshotReviews);
+  const renderDetails = () => {
+    const { passes, failures, pending, skipped } = stats;
+    const { failReviews, screenshotReviews } = containerStatus.summary.subtotals;
+    const { resolved, reviewRequired } = getReviewStats(failReviews, screenshotReviews);
     return (
       <ul className={ cx('list') }>
         <li className={ cx('item', 'passes') } title='Passed'>
@@ -68,31 +60,31 @@ class QuickSummary extends React.Component {
           </li>)
         }
       </ul>
-    )
-  }
-
-  render() {
-    const { duration, suites, testsRegistered } = this.props.stats;
-    const { containerStatus } = this.props.reportStore;
-
-    return (
-      <div className={ cx('cnt') }>
-        <ul className={ cx('list') }>
-          <li className={ cx('item', 'duration') } title='Duration'>
-            <Icon name='timer' className={ cx('icon') } />
-            <Duration unitsClassName={ cx('duration-units') } timer={ duration } isSummary />
-          </li>
-          <li className={ cx('item', 'suites') } title='Suites'>
-            <Icon name='library_books' className={ cx('icon') } />{ suites }
-          </li>
-          <li className={ cx('item', 'tests') } title='Tests'>
-            <Icon name='assignment' className={ cx('icon') } />{ testsRegistered }
-          </li>
-        </ul>
-        { !!containerStatus.summary && this.renderDetails()}
-      </div>
     );
-  }
+  };
+
+  return (
+    <div className={ cx('cnt') }>
+      <ul className={ cx('list') }>
+        <li className={ cx('item', 'duration') } title='Duration'>
+          <Icon name='timer' className={ cx('icon') } />
+          <Duration unitsClassName={ cx('duration-units') } timer={ duration } isSummary />
+        </li>
+        <li className={ cx('item', 'suites') } title='Suites'>
+          <Icon name='library_books' className={ cx('icon') } />{ suites }
+        </li>
+        <li className={ cx('item', 'tests') } title='Tests'>
+          <Icon name='assignment' className={ cx('icon') } />{ testsRegistered }
+        </li>
+      </ul>
+      { !!containerStatus.summary && renderDetails()}
+    </div>
+  );
+}
+
+QuickSummary.propTypes = {
+  stats: PropTypes.object,
+  containerStatus: PropTypes.object
 }
 
 export default QuickSummary;
