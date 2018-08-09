@@ -9,27 +9,11 @@ const cx = classNames.bind(styles);
 const QuickSummary = ({ stats, containerStatus }) => {
   const { duration, suites, testsRegistered } = stats;
 
-  const getReviewStats = (failReviews, screenshotReviews) => {
-    let resolved = 0;
-    let reviewRequired = 0;
-    const items = { ...failReviews, ...screenshotReviews };
-    Object.keys(items).forEach(key => {
-      if (items[key].resolved) {
-        resolved += 1;
-      } else {
-        reviewRequired += 1;
-      }
-    });
-    return {
-      resolved,
-      reviewRequired
-    };
-  };
-
   const renderDetails = () => {
     const { passes, failures, pending, skipped } = stats;
-    const { failReviews, screenshotReviews } = containerStatus.summary.subtotals;
-    const { resolved, reviewRequired } = getReviewStats(failReviews, screenshotReviews);
+    const { resolved = 0, reviewRequired = 0 } = containerStatus.summary ? containerStatus.summary.subtotals : {};
+    const failedNum = failures - (resolved + reviewRequired);
+
     return (
       <ul className={ cx('list') }>
         <li className={ cx('item', 'passes') } title='Passed'>
@@ -46,7 +30,7 @@ const QuickSummary = ({ stats, containerStatus }) => {
           </li>)
         }
         <li className={ cx('item', 'failures') } title='Failed'>
-          <Icon name='close' className={ cx('icon', 'circle-icon') } />{ failures }
+          <Icon name='close' className={ cx('icon', 'circle-icon') } />{ failedNum }
         </li>
         { !!pending && (
           <li className={ cx('item', 'pending') } title='Pending'>

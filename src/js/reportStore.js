@@ -33,6 +33,17 @@ class ReportStore {
   }
 
   @action.bound setContainerStatus(obj) {
+    obj.summary.subtotals.reviewRequired = 0;
+    obj.summary.subtotals.resolved = 0;
+    const { failReviews, screenshotReviews } = obj.summary.subtotals;
+    const reviews = { ...failReviews, ...screenshotReviews };
+    Object.keys(reviews).forEach(key => {
+      if (reviews[key].resolved) {
+        obj.summary.subtotals.resolved += 1;
+      } else {
+        obj.summary.subtotals.reviewRequired += 1;
+      }
+    })
     this.containerStatus = obj;
   }
 

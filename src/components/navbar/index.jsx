@@ -17,11 +17,16 @@ class Navbar extends React.Component {
   };
   render() {
     const { stats, reportStore } = this.props;
-    const { passPercent, pendingPercent } = stats;
+    const { failures, passPercent, pendingPercent } = stats;
     const { containerStatus } = reportStore;
     const version = containerStatus['da-testing-framework'] ? containerStatus['da-testing-framework'].version : '';
+    const { resolved = 0, reviewRequired = 0 } = containerStatus.summary ? containerStatus.summary.subtotals : {};
 
-    const failPercent = 100 - passPercent;
+    const failPercentTotal = 100 - passPercent;
+    const failEachPerc = failPercentTotal / failures;
+    const resolvedPerc = failEachPerc * resolved;
+    const reviewRequiredPerc = failEachPerc * reviewRequired;
+    const failPercent = failPercentTotal - resolvedPerc - reviewRequiredPerc;
     const allPending = pendingPercent === 100;
     const showPctBar = passPercent !== null && pendingPercent !== null;
 
@@ -49,6 +54,8 @@ class Navbar extends React.Component {
           <div className={ cx('pct-bar') }>
             { allPending && pctBar(pendingPercent, 'pend', 'Pending') }
             { !allPending && pctBar(passPercent, 'pass', 'Passing') }
+            { !allPending && pctBar(resolvedPerc, 'resolved', 'Resolved') }
+            { !allPending && pctBar(reviewRequiredPerc, 'review-required', 'Review Required') }
             { !allPending && pctBar(failPercent, 'fail', 'Failing') }
           </div>
         }

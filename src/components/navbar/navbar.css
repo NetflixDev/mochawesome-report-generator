@@ -83,6 +83,14 @@
     background-color: var(--green500);
   }
 
+  & .resolved {
+    background-color: var(--ltblue500);
+  }
+
+  & .review-required {
+    background-color: var(--yellow800);
+  }
+
   & .fail {
     background-color: var(--red500);
   }
