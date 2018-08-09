@@ -7,7 +7,6 @@ import styles from './quick-summary.css';
 const cx = classNames.bind(styles);
 
 const QuickSummary = ({ stats, containerStatus }) => {
-
   const { duration, suites, testsRegistered } = stats;
 
   const getReviewStats = (failReviews, screenshotReviews) => {
