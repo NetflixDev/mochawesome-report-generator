@@ -28,7 +28,8 @@ const Test = t.struct({
   parentUUID: t.maybe(Uuid),
   skipped: t.Boolean,
   context: t.maybe(t.String),
-  isHook: t.Boolean
+  isHook: t.Boolean,
+  label: t.maybe(t.String)
 });
 
 const Suite = t.declare('Suite');

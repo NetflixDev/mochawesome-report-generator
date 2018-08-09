@@ -19,7 +19,7 @@
     "pack:external": "MARGE_ASSETS=external webpack",
     "pack:inline": "MARGE_ASSETS=inline webpack",
     "devserver": "webpack-dev-server --inline --watch --hot",
-    "cli": "node ./bin/cli test/sample-data/labels.json --dev",
+    "cli": "node ./bin/cli test/sample-data/C20.json --dev",
     "dev": "npm run compile && npm run cli && npm run devserver",
     "dev:cli": "nodemon --watch bin/src --watch lib/src --exec npm run compile"
   },
