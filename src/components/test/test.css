@@ -18,6 +18,16 @@
     border-left-color: var(--red500);
   }
 
+  &.expanded.resolved,
+  &.expanded.resolved:hover {
+    border-left-color: var(--ltblue700);
+  }
+
+  &.review-required,
+  &.expanded.review-required:hover {
+    border-left-color: var(--amber500);
+  }
+
   transition: border-color 0.2s ease-out;
 }
 

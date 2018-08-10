@@ -13,18 +13,18 @@ class Test extends PureComponent {
   constructor(props) {
     super(props);
 
-    const { test, reviewed, label } = props;
-    const revieweNeeded = test.fail && !reviewed && label !== 'required';
+    const { test, resolved, label } = props;
+    const reviewRequired = test.fail && !resolved && label !== 'required';
     this.state = {
       expanded: true,
-      revieweNeeded
+      reviewRequired
     };
   }
 
   static propTypes = {
     test: PropTypes.object,
     enableCode: PropTypes.bool,
-    reviewed: PropTypes.bool,
+    resolved: PropTypes.bool,
     label: PropTypes.string,
     testType: PropTypes.string
   };
@@ -34,7 +34,7 @@ class Test extends PureComponent {
   };
 
   toggleExpandedState = () => {
-    if (this.state.revieweNeeded) {
+    if (this.state.reviewRequired) {
       return;
     }
     const { test, enableCode } = this.props;
@@ -44,7 +44,7 @@ class Test extends PureComponent {
   }
 
   reviewApproveClick = () => {
-    this.setState({ revieweNeeded: false });
+    this.setState({ reviewRequired: false });
     const { uuid, title } = this.props.test;
     const { testType } = this.props;
     const host = window.location.origin;
@@ -60,8 +60,8 @@ class Test extends PureComponent {
   }
 
   render() {
-    const { test, enableCode, label } = this.props;
-    const { revieweNeeded } = this.state;
+    const { test, enableCode, label, resolved } = this.props;
+    const { reviewRequired } = this.state;
     const {
       uuid,
       title,
@@ -88,7 +88,7 @@ class Test extends PureComponent {
         if (label === 'required') {
           iconName = 'close';
           iconClassName = 'fail';
-        } else if (revieweNeeded) {
+        } else if (reviewRequired) {
           iconName = 'check';
           iconClassName = 'review-required';
         } else {
@@ -112,7 +112,7 @@ class Test extends PureComponent {
         }
         iconClassName = 'hook';
       }
-      if (revieweNeeded) {
+      if (reviewRequired) {
         return <Icon name={ iconName } className={ cx('icon', iconClassName) } clickEvt={ this.reviewApproveClick } size={ isHook ? 24 : 18 } />;
       }
       return <Icon name={ iconName } className={ cx('icon', iconClassName) } size={ isHook ? 24 : 18 } />;
@@ -121,7 +121,9 @@ class Test extends PureComponent {
     const cxname = cx('component', {
       expanded: this.state.expanded,
       passed: pass,
-      failed: fail,
+      failed: (fail && !reviewRequired && !resolved),
+      'review-required': reviewRequired,
+      resolved,
       pending,
       skipped,
       hook: isHook,

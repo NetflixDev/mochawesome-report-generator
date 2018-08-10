@@ -27,7 +27,7 @@ const TestList = ({ className, tests, beforeHooks, afterHooks, enableCode, conta
         <Test key={ test.uuid } test={ test } enableCode={ enableCode } testType={ testType } />))
       }
       { !!tests && tests.map(test => (
-        <Test key={ test.uuid } test={ test } enableCode={ enableCode } testType={ testType } reviewed={ reviewedIds.includes(test.uuid) } label={ getLabel(test.uuid) } />))
+        <Test key={ test.uuid } test={ test } enableCode={ enableCode } testType={ testType } resolved={ reviewedIds.includes(test.uuid) } label={ getLabel(test.uuid) } />))
       }
       { !!afterHooks && afterHooks.map(test => (
         <Test key={ test.uuid } test={ test } enableCode={ enableCode } testType={ testType } />))
