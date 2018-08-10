@@ -85,11 +85,17 @@ class ReportBody extends React.Component {
     const {
       enableCode,
       enableChart,
-      filteredSuites: suites
+      filteredSuites: suites,
+      containerStatus
     } = this.props.reportStore;
+    const { container = '', output = '' } = containerStatus.routes ? containerStatus.routes : {};
 
     return (
       <div id='details' className={ cx('details', 'container') }>
+        <div className='info-links'>
+          {output && <a href={ output }>Output Log</a>}
+          {container && <a href={ container }>Container Preview</a>}
+        </div>
         { suites.map(suite => (
           <Suite
             key={ suite.uuid }
