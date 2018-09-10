@@ -275,6 +275,10 @@
   & .code-snippet {
     padding-top: 0;
   }
+
+  & pre {
+    white-space: pre-line;
+  }
 }
 
 .context-item-title {
