@@ -1,17 +1,19 @@
-const t = require('tcomb');
-const {
-  isUUID,
-  isISO8601
-} = require('validator');
+'use strict';
 
-const PercentClass = t.enums.of([ 'success', 'warning', 'danger' ], 'PercentClass');
-const TestState = t.enums.of([ 'passed', 'failed' ], 'TestState');
-const TestSpeed = t.enums.of([ 'slow', 'medium', 'fast' ], 'TestSpeed');
-const DateString = t.refinement(t.String, isISO8601, 'DateString');
-const Duration = t.maybe(t.Integer);
-const Uuid = t.refinement(t.String, isUUID, 'UUID');
+var t = require('tcomb');
 
-const Test = t.struct({
+var _require = require('validator'),
+    isUUID = _require.isUUID,
+    isISO8601 = _require.isISO8601;
+
+var PercentClass = t.enums.of(['success', 'warning', 'danger'], 'PercentClass');
+var TestState = t.enums.of(['passed', 'failed'], 'TestState');
+var TestSpeed = t.enums.of(['slow', 'medium', 'fast'], 'TestSpeed');
+var DateString = t.refinement(t.String, isISO8601, 'DateString');
+var Duration = t.maybe(t.Integer);
+var Uuid = t.refinement(t.String, isUUID, 'UUID');
+
+var Test = t.struct({
   title: t.String,
   fullTitle: t.String,
   timedOut: t.Boolean,
@@ -32,7 +34,7 @@ const Test = t.struct({
   label: t.maybe(t.String)
 });
 
-const Suite = t.declare('Suite');
+var Suite = t.declare('Suite');
 Suite.define(t.struct({
   title: t.String,
   suites: t.list(Suite),
@@ -52,7 +54,7 @@ Suite.define(t.struct({
   rootEmpty: t.maybe(t.Boolean)
 }));
 
-const TestReport = t.struct({
+var TestReport = t.struct({
   stats: t.struct({
     suites: t.Integer,
     tests: t.Integer,
@@ -78,5 +80,5 @@ const TestReport = t.struct({
 });
 
 module.exports = {
-  TestReport
+  TestReport: TestReport
 };

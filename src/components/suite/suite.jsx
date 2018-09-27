@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { inject, observer } from 'mobx-react';
 import isEmpty from 'lodash/isEmpty';
 import { TestList } from 'components/test';
 import { SuiteChart, SuiteList, SuiteSummary } from 'components/suite';
@@ -9,6 +10,7 @@ import styles from './suite.css';
 
 const cx = classNames.bind(styles);
 
+@inject('reportStore') @observer
 class Suite extends Component {
   shouldComponentUpdate(nextProps) {
     return !isEqual(this.props, nextProps);
@@ -16,6 +18,7 @@ class Suite extends Component {
 
   render() {
     const { className, suite, enableChart, enableCode } = this.props;
+    const { containerStatus } = this.props.reportStore;
     const { root, rootEmpty, suites, tests, beforeHooks, afterHooks,
       uuid, title, file, duration } = suite;
 
@@ -43,6 +46,7 @@ class Suite extends Component {
 
     const testListComp = () => (hasTests || hasBeforeHooks || hasAfterHooks) && (
       <TestList
+        containerStatus={ containerStatus }
         uuid={ uuid }
         tests={ tests }
         beforeHooks={ beforeHooks }
@@ -81,7 +85,7 @@ class Suite extends Component {
     const hideHeader = root && !hasTests && (hasBeforeHooks || hasAfterHooks);
 
     return (
-      <section className={ cxname } id={ uuid }>
+      <section className={ cxname } data-id={ uuid }>
         { !hideHeader &&
           <header className={ cx('header') }>
             { title !== '' && <h3 className={ cx('title') }>{ title }</h3> }
@@ -103,7 +107,8 @@ Suite.propTypes = {
   suite: PropTypes.object,
   className: PropTypes.string,
   enableChart: PropTypes.bool,
-  enableCode: PropTypes.bool
+  enableCode: PropTypes.bool,
+  reportStore: PropTypes.object
 };
 
 export default Suite;

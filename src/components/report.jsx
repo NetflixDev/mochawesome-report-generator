@@ -8,8 +8,6 @@ import MobxDevTool from './mobxDevtool';
 
 const MochawesomeReport = observer(props => {
   const {
-    openSideNav,
-    reportTitle,
     stats,
     devMode,
     VERSION
@@ -19,8 +17,6 @@ const MochawesomeReport = observer(props => {
     <Provider reportStore={ props.store }>
       <main>
         <Navbar
-          onMenuClick={ openSideNav }
-          reportTitle={ reportTitle }
           stats={ stats } />
         <ReportBody />
         <Loader />

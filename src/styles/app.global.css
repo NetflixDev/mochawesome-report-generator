@@ -40,6 +40,12 @@
     url(../../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff) format('woff');
 }
 
+sub {
+  margin-left: 5px;
+  opacity: 0.7;
+  font-style: italic;
+}
+
 .material-icons {
   display: inline-block;
   font-family: 'Material Icons';
@@ -139,6 +145,28 @@ pre {
 
 .details {
   padding-top: calc(var(--navbar-height) + 24px);
+  & .info-links {
+   display: flex;
+   justify-content: flex-end;
+  }
+
+  & a {
+    display: inline-block;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    padding: 2px 8px;
+    border: 1px var(--gray-border) solid;
+    background: #fff;
+    color: var(--grey500);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: .15s opacity;
+
+    &:hover {
+      text-decoration: none;
+      color: var(--gray-darker);
+    }
+  }
 }
 
 /* Z-levels */

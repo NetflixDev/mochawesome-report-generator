@@ -6,26 +6,43 @@ import styles from './test.css';
 
 const cx = classNames.bind(styles);
 
-const TestList = ({ className, tests, beforeHooks, afterHooks, enableCode }) => (
-  <div className={ cx(className) }>
-    { !!beforeHooks && beforeHooks.map(test => (
-      <Test key={ test.uuid } test={ test } enableCode={ enableCode } />))
+const TestList = ({ className, tests, beforeHooks, afterHooks, enableCode, containerStatus }) => {
+  const { type: testType } = containerStatus;
+  const { failReviews, screenshotReviews } = containerStatus.summary.subtotals;
+  const reviewObj = { ...failReviews, ...screenshotReviews };
+  const reviewedIds = Object.keys(reviewObj).filter(key => reviewObj[key].resolved);
+
+  const getLabel = uuid => {
+    if (Object.keys(failReviews).includes(uuid)) {
+      return 'nice-to-have';
+    } else if (Object.keys(screenshotReviews).includes(uuid)) {
+      return 'screenshot-review';
     }
-    { !!tests && tests.map(test => (
-      <Test key={ test.uuid } test={ test } enableCode={ enableCode } />))
-    }
-    { !!afterHooks && afterHooks.map(test => (
-      <Test key={ test.uuid } test={ test } enableCode={ enableCode } />))
-    }
-  </div>
-);
+    return 'required';
+  };
+
+  return (
+    <div className={ cx(className) }>
+      { !!beforeHooks && beforeHooks.map(test => (
+        <Test key={ test.uuid } test={ test } enableCode={ enableCode } testType={ testType } />))
+      }
+      { !!tests && tests.map(test => (
+        <Test key={ test.uuid } test={ test } enableCode={ enableCode } testType={ testType } resolved={ reviewedIds.includes(test.uuid) } label={ getLabel(test.uuid) } />))
+      }
+      { !!afterHooks && afterHooks.map(test => (
+        <Test key={ test.uuid } test={ test } enableCode={ enableCode } testType={ testType } />))
+      }
+    </div>
+  );
+}
 
 TestList.propTypes = {
   className: PropTypes.string,
   tests: PropTypes.array,
   beforeHooks: PropTypes.array,
   afterHooks: PropTypes.array,
-  enableCode: PropTypes.bool
+  enableCode: PropTypes.bool,
+  containerStatus: PropTypes.object
 };
 
 TestList.displayName = 'TestList';

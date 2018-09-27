@@ -48,9 +48,10 @@ module.exports = {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
       'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
-    }
+    },
+    host: '0.0.0.0'
   },
-  devtool: isDev ? 'source-map' : false,
+  devtool: isDev ? 'cheap-source-map' : false,
   entry: {
     app: './src/js/mochawesome.js'
   },
