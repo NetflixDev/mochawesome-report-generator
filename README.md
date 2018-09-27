@@ -2,7 +2,7 @@ mochawesome-report-generator (marge)
 ============================
 [![npm](https://img.shields.io/npm/v/mochawesome-report-generator.svg)](http://www.npmjs.com/package/mochawesome-report-generator) [![Build Status](https://img.shields.io/travis/adamgruber/mochawesome-report-generator/master.svg)](https://travis-ci.org/adamgruber/mochawesome-report-generator) [![Test Coverage](https://api.codeclimate.com/v1/badges/613427ae1baabfb75360/test_coverage)](https://codeclimate.com/github/adamgruber/mochawesome-report-generator/test_coverage) [![Maintainability](https://api.codeclimate.com/v1/badges/613427ae1baabfb75360/maintainability)](https://codeclimate.com/github/adamgruber/mochawesome-report-generator/maintainability)
 
-** Please run `npm packcontent` before pushing to generation the dist version for C2.0 use.
+** Please run `npm packcontent` before pushing to generate the dist version for C2.0 use.
 
 
 **marge** (**m**och**a**wesome-**r**eport-**ge**nerator) is the counterpart to [mochawesome][2], a custom reporter for use with the Javascript testing framework, [mocha][1]. Marge takes the JSON output from [mochawesome][2] and generates a full fledged HTML/CSS report that helps visualize your test suites.
