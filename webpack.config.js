@@ -44,7 +44,7 @@ if (env === 'production') {
   plugins.push(
     new UglifyJsPlugin({
       uglifyOptions: {
-        compress: { warnings: false },
+        // compress: { warnings: false },
         output: {
           comments: /^! mochawesome/,
           inline_script: true,
@@ -79,7 +79,7 @@ module.exports = {
   },
   module: {
     rules: [
-      eslint({ enforce: 'pre' }),
+      // eslint({ enforce: 'pre' }),
       babel({}, pkg.version),
       globalCss({
         importLoaders: 1,

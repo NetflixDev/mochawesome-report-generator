@@ -1,22 +1,34 @@
-'use strict';
+"use strict";
 
-var t = require('tcomb');
+const t = require('tcomb');
 
-var _require = require('validator'),
-    isUUID = _require.isUUID,
-    isISO8601 = _require.isISO8601;
+const {
+  isUUID,
+  isISO8601
+} = require('validator');
 
-var PercentClass = t.enums.of(['success', 'warning', 'danger'], 'PercentClass');
-var TestState = t.enums.of(['passed', 'failed'], 'TestState');
-var TestSpeed = t.enums.of(['slow', 'medium', 'fast'], 'TestSpeed');
-var DateString = t.refinement(t.String, isISO8601, 'DateString');
-var Duration = t.maybe(t.Integer);
-var Uuid = t.refinement(t.String, isUUID, 'UUID');
-
-var Test = t.struct({
+const TestState = t.enums.of(['passed', 'failed', 'pending', 'skipped'], 'TestState');
+const TestSpeed = t.enums.of(['slow', 'medium', 'fast'], 'TestSpeed');
+const DateString = t.refinement(t.String, isISO8601, 'DateString');
+const Duration = t.maybe(t.Integer);
+const Uuid = t.refinement(t.String, isUUID, 'UUID');
+const ReportMeta = t.struct({
+  mocha: t.struct({
+    version: t.String
+  }),
+  mochawesome: t.struct({
+    options: t.Object,
+    version: t.String
+  }),
+  marge: t.struct({
+    options: t.Object,
+    version: t.String
+  })
+});
+const Test = t.struct({
   title: t.String,
   fullTitle: t.String,
-  timedOut: t.Boolean,
+  timedOut: t.maybe(t.Boolean),
   duration: Duration,
   state: t.maybe(TestState),
   speed: t.maybe(TestSpeed),
@@ -25,7 +37,6 @@ var Test = t.struct({
   pending: t.Boolean,
   code: t.String,
   err: t.Object,
-  isRoot: t.Boolean,
   uuid: Uuid,
   parentUUID: t.maybe(Uuid),
   skipped: t.Boolean,
@@ -33,8 +44,7 @@ var Test = t.struct({
   isHook: t.Boolean,
   label: t.maybe(t.String)
 });
-
-var Suite = t.declare('Suite');
+const Suite = t.declare('Suite');
 Suite.define(t.struct({
   title: t.String,
   suites: t.list(Suite),
@@ -53,8 +63,7 @@ Suite.define(t.struct({
   duration: Duration,
   rootEmpty: t.maybe(t.Boolean)
 }));
-
-var TestReport = t.struct({
+const TestReport = t.struct({
   stats: t.struct({
     suites: t.Integer,
     tests: t.Integer,
@@ -70,15 +79,13 @@ var TestReport = t.struct({
     other: t.Integer,
     hasOther: t.Boolean,
     skipped: t.Integer,
-    hasSkipped: t.Boolean,
-    passPercentClass: PercentClass,
-    pendingPercentClass: PercentClass,
-    context: t.maybe(t.String)
+    hasSkipped: t.Boolean
   }),
-  suites: Suite,
-  copyrightYear: t.Integer
+  results: t.list(Suite),
+  meta: t.maybe(ReportMeta)
 });
-
 module.exports = {
-  TestReport: TestReport
+  TestReport,
+  Test,
+  Suite
 };
